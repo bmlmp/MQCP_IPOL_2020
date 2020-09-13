@@ -1,0 +1,322 @@
+---
+title: "Conceitos introdutórios, dados e tipos de variáveis"
+author: "Frederico Bertholini"
+subtitle: "Métodos Quantitativos Aplicados à Ciência Política"
+date: "31.ago.2020"
+output:
+ 
+ beamer_presentation: 
+   theme: Berkeley
+   colortheme: dove
+   fonttheme: structurebold
+   keep_tex: true
+   toc: true
+   number_sections: true
+   slide_level: 2
+   highlight: tango
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Pesquisa empírica e métodos quantitativos
+
+## Por que métodos quantitativos?
+
+- Método e objeto: fronteiras tênues
+
+- O fetiche da quantificação: *concept formation stands prior to quantification.* 
+
+- Questão de pesquisa -> reflexão sobre a literatura -> formação conceitual (seleção e validação) -> análise 
+
+- Método vs. técnica
+
+
+## Por que métodos quantitativos?
+
+- Medição de quantidades e quantificação de qualidades
+
+- Só se quantifica o conhecido? efeitos da causa ou causa dos efeitos
+
+- Algumas crenças fundamentais: 
+  
+   -- produção de sentido e mensuração
+   
+   -- identificação de padrões e relações entre muitos casos (o que é muito?)
+
+- Ideia -> Evidências -> Análises -> Representações
+
+## Por que usaremos estatística?
+
+Na Ciência Política há uma série de problemas cuja solução pode ser determinada de forma exata. 
+
+ - Exemplo: o Executivo distribui 513 milhões de reais em emendas aos 513 deputados da legislatura. A distribuição de recursos é idêntica entre os deputados Quanto cada um receberá?
+
+Este tipo de problema é chamado de determinístico porque não há incerteza envolvida nele.
+
+##
+
+A maior parte das questões interessantes, porém, não possui uma solução exata que possa ser determinada a priori:
+
+ - O deputado A executou suas emendas na região X dos Estado e o deputado B na região Y, quem tem mais chances de ser reeleito? 
+
+O fato de não conseguirmos dar uma resposta **EXATA** para um problema, não significa que não podemos dar uma resposta suficientemente **BOA**.
+
+ - Como faremos isso neste curso? Olhando para o **passado** (estatística descritiva) e estimando **probabilidades** (probabilidade e inferência) sobre o que ocorrerá no futuro.
+
+
+# Conceitos, teorias e métodos 
+
+
+
+## Teorias, métodos e observações
+
+![](ciclo.png)
+
+
+## Modelando
+
+
+- Modelos são abstrações da realidade (estilizações): mapas
+
+- Você julga um modelo por sua utilidade, no contexto de um propósito específico. 
+
+- Ser uma representação completamente verdadeira, correta ou absolutamente realista é irrelevante: Rudimentar, limitado. Útil?
+
+
+## A tensão entre empiria e teoria
+
+![](teoria_empiria.png)
+Falácias:
+
+- Ecológica (tomar o indivíduo pelo grupo)
+
+- Individualista (cherry picking)
+
+
+
+## Relações entre variáveis
+
+![](relacoes.png)
+
+
+## Modelos de teorias
+
+Descritiva (tipologias)
+
+Causal:
+
+- simples
+- várias dependentes
+- cadeia causal ou feedback
+
+
+## Uma pequena lembrança sobre conceitos e mensuração
+
+![](conceito_medida.png)
+
+## Atributos
+
+Definições operacionais exaustivas e mutuamente exclusivas
+
+ - Nome
+
+ - Definição verbal
+
+ - Processo de classificação que permita identificar casos
+
+
+## Tipos 
+
+Reversível vs. Irreversível
+
+Determinística vs. Probabilística
+
+Sequencial vs. Coexistente
+
+Suficiente vs. Contingente
+
+Necessárias vs. Substituíveis
+
+
+
+
+## O processo de inferência
+
+a. Escolher: uma pergunta de pesquisa.
+
+b. Formalizar: identificando uma **Quantidade de Interesse (QdI)** com base na pergunta.
+
+c. Coletar: dados com base na QdI
+
+d. Supor: classe de modelos, dados fornecidos, QdI e perguntas
+
+e. Estimar de dados: melhor modelo da classe
+
+f. Apresentar Resultados:
+
+-- Estimativas de QdI: interpretáveis por qualquer pessoa
+
+-- Estimativas de incerteza, como intervalo de confiança (CI), erro padrão (SE), etc.
+
+
+# Conceitos importantes
+
+## População e amostra
+
+![](pop_amostra.png)
+Estatística descritiva e estatística inferencial
+
+Estimativa pontual ou intervalar (veremos mais à frente)
+
+##
+
+População: Conjunto de todas as unidades observáveis de interesse.
+
+Amostra: Subconjunto da população.
+
+Como extrair conclusões sobre a população a partir de uma amostra?
+
+ - O candidato A tem 40% das intenções de voto com margem de erro de 2%.
+
+De onde veio essa margem de erro?
+
+
+
+## Estatística descritiva
+
+Nós já vimos que a Estatística responde a problemas estocásticos  “olhando para o passado e estimando probabilidades sobre o que ocorrerá no futuro.” 
+
+ - Cabe então perguntar: Onde encontrar registros deste passado (dados)?
+
+ - Como guardar esses registros?
+
+ - Como descrever esses registros de forma que ajude a responder o problema que queremos?
+
+## De onde vêm os dados
+
+Fontes primárias vs. fontes secundárias
+
+![Estrutura](dados.png)
+
+## Tipos de variáveis 
+
+Para se descrever bem alguma coisa, é preciso saber a natureza daquilo que se deseja descrever. 
+
+Tipicamente, as observações podem ter dois tipos de características: características que indicam **quantidade** ou **qualidade**. 
+
+Por isso, dizemos que existem dois tipos de variáveis: 
+
+ - variáveis quantitativas e 
+ - variáveis qualitativas.
+
+
+## Tipos e origem (CERVI)
+
+![](tipos_origem.png)
+
+## Tipos
+
+![](tipos_grande.png)
+## No R (+ detalhes aula que vem)
+
+factor
+
+character
+
+discrete
+
+continuous
+
+date and time
+
+## Contínuas vs discretas
+
+![](1.png)
+
+## Atributos
+
+![](atributos.png)
+
+
+## Cuidado!
+
+Algumas características podem ser representadas tanto por uma variável quantitativa como por uma qualitativa.
+
+ - Tamanho de um partido (em assentos)
+ 
+ - Tamanho de um partido (P/M/G)
+
+Às vezes, isto pode ser mais sutil:
+
+ - Renda per capita da família em reais
+ 
+ - Classe de renda (Alta, Média ou Baixa)
+
+Cuidado! Variáveis qualitativas podem ser representadas sob forma de número. Por exemplo:
+
+ - Deputados de Direita, Esquerda e Centro poderiam ter atribídas ideologia {1,-1,0} ou {1,3,2}.
+
+Você pode trabalhar com a representação que quiser, mas a tua escolha terá implicações para a tua análise.
+
+
+
+## 
+
+![](tipos_graficos_intro.png)
+
+##
+![](2.png)
+
+
+##
+
+![](3.png)
+
+
+##
+
+![](4.png)
+
+##
+
+![](5.png)
+
+##
+
+![](6.png)
+
+
+##
+
+![](7.png)
+
+
+
+##
+
+![](8.png)
+
+
+
+
+
+## Como modelar
+
+![](quais_modelos.png)
+
+## 
+
+![](hair_rogerio.jpg)
+
+## Como informar
+
+![](quais_graficos.png)
+
+## Gráficos no R
+
+[![](rgraph.png)](https://www.r-graph-gallery.com/index.html)
+
+# Abrindo o R e conhecendo o software
