@@ -1,19 +1,18 @@
 
 ## R como calculadora
 
+
 # Um função primordial e básica do R, como software estatístico, é de calculadora
 # O R possui os operadores básicos da matemática como '+' , '-', '*' e '/'
 
 
-5 + 5
+5 + 5 + 5
 
 5 - 3
 
 4 * 9
 
 16 / 2
-
-
 
 
 
@@ -61,6 +60,7 @@ sqrt(36)
 
 TRUE == TRUE
 
+
 TRUE <= FALSE
 
 # Assim como estamos caracteres
@@ -96,8 +96,8 @@ TRUE <= FALSE
 
 
 sorte <- 5
-
-
+sortea = 6
+rm(sortea)
 
 
 ## Regras do uso da setinha
@@ -117,6 +117,9 @@ Sorte
 
 
 15luck <- 15
+a15luck <- 15
+a15luck
+a.1 <- 4
 
 # Erro: unexpected symbol in "15luck"
 
@@ -141,10 +144,7 @@ decimal <- 3,5
 
 decimal <- 3.5
 
-
-
-
-
+decimal = 3.5
 
 ## Lógico
 
@@ -380,7 +380,7 @@ n.pares[1]
  
 # Subtraindo esses dois elementos, temos o alcance do vetor
 
-n.pares[length(n.pares)] # n.pares[1]
+n.pares[length(n.pares)] - n.pares[1]
 
  
 
@@ -419,12 +419,10 @@ n.naturais
 n.naturais[n.naturais == 10]
  
 
-
-
 ## Conjuntos
 
 # Outro ponto importante é saber se os elementos estão contidos dentro de outro vetor
-# A pergunta a se fazer é: os elementos do vetor "n.partidos" está contido no vetor "n.naturais"
+# A pergunta a se fazer é: os elementos do vetor "n.pares" está contido no vetor "n.naturais"
 # No R, contidos é igual a \%in\%
   
 n.pares %in% n.naturais
@@ -436,9 +434,6 @@ n.pares %in% n.naturais
 is.element(n.pares,n.naturais)
 
  
-
-
-
 ## Conjuntos
 
 # Para encontrar os valores exclusivos de um conjunto, vamos utilizar a escrita da seleção de elementos
@@ -523,6 +518,7 @@ library(readxl)
 cgu <- 
 read_xlsx("dados/controle_cgu_municípios.xlsx")
   
+
 
 ## Importação por pacote 
 library(electionsBR)
@@ -616,9 +612,19 @@ library(magrittr)
 x <- c(1, 2, 3, 4)
 
 #Primeiro, sem o pipe.
+soma_x <- sum(x) #somando x
+raiz_soma_x <- sqrt(soma_x) # tirando raiz quadrada da soma
+raiz_soma_x
+
+
 sqrt(sum(x))
 
 #Agora com o pipe.
+
+c(1, 2, 3, 4) %>% 
+  sum %>% 
+  sqrt
+
 x %>% 
   sum %>% 
   sqrt

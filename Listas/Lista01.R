@@ -68,9 +68,4 @@ round(mean(divide_by(sum(1:10),3)),digits = 1)
 # referentes apenas ao DF no ano de 2018
 
 
-# 5b. escreva outro objeto (ou sobrescreva o mesmo), agora FILTRANDO
-# apenas candidates a DEPUTADO DISTRITAL de cor PRETA
-
-
-# 5c. Informe a proporção de mulheres
 
