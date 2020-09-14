@@ -1,8 +1,9 @@
 ---
-title: "Conceitos introdutórios, dados e tipos de variáveis"
+title: "O Universo Tidyverse"
 author: "Frederico Bertholini"
 subtitle: "Métodos Quantitativos Aplicados à Ciência Política"
-date: "31.ago.2020"
+date: "14.set.2020"
+fontsize: 10pt
 output:
  
  beamer_presentation: 
@@ -18,305 +19,1290 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = T,eval=T)
 ```
 
-# Pesquisa empírica e métodos quantitativos
-
-## Por que métodos quantitativos?
-
-- Método e objeto: fronteiras tênues
-
-- O fetiche da quantificação: *concept formation stands prior to quantification.* 
-
-- Questão de pesquisa -> reflexão sobre a literatura -> formação conceitual (seleção e validação) -> análise 
-
-- Método vs. técnica
-
-
-## Por que métodos quantitativos?
-
-- Medição de quantidades e quantificação de qualidades
-
-- Só se quantifica o conhecido? efeitos da causa ou causa dos efeitos
-
-- Algumas crenças fundamentais: 
-  
-   -- produção de sentido e mensuração
-   
-   -- identificação de padrões e relações entre muitos casos (o que é muito?)
-
-- Ideia -> Evidências -> Análises -> Representações
-
-## Por que usaremos estatística?
-
-Na Ciência Política há uma série de problemas cuja solução pode ser determinada de forma exata. 
-
- - Exemplo: o Executivo distribui 513 milhões de reais em emendas aos 513 deputados da legislatura. A distribuição de recursos é idêntica entre os deputados Quanto cada um receberá?
-
-Este tipo de problema é chamado de determinístico porque não há incerteza envolvida nele.
-
-##
-
-A maior parte das questões interessantes, porém, não possui uma solução exata que possa ser determinada a priori:
-
- - O deputado A executou suas emendas na região X dos Estado e o deputado B na região Y, quem tem mais chances de ser reeleito? 
-
-O fato de não conseguirmos dar uma resposta **EXATA** para um problema, não significa que não podemos dar uma resposta suficientemente **BOA**.
-
- - Como faremos isso neste curso? Olhando para o **passado** (estatística descritiva) e estimando **probabilidades** (probabilidade e inferência) sobre o que ocorrerá no futuro.
-
-
-# Conceitos, teorias e métodos 
-
-
-
-## Teorias, métodos e observações
-
-![](ciclo.png)
-
-
-## Modelando
-
-
-- Modelos são abstrações da realidade (estilizações): mapas
-
-- Você julga um modelo por sua utilidade, no contexto de um propósito específico. 
-
-- Ser uma representação completamente verdadeira, correta ou absolutamente realista é irrelevante: Rudimentar, limitado. Útil?
-
-
-## A tensão entre empiria e teoria
-
-![](teoria_empiria.png)
-Falácias:
-
-- Ecológica (tomar o indivíduo pelo grupo)
-
-- Individualista (cherry picking)
-
-
-
-## Relações entre variáveis
-
-![](relacoes.png)
-
-
-## Modelos de teorias
-
-Descritiva (tipologias)
-
-Causal:
-
-- simples
-- várias dependentes
-- cadeia causal ou feedback
-
-
-## Uma pequena lembrança sobre conceitos e mensuração
-
-![](conceito_medida.png)
-
-## Atributos
-
-Definições operacionais exaustivas e mutuamente exclusivas
-
- - Nome
-
- - Definição verbal
-
- - Processo de classificação que permita identificar casos
-
-
-## Tipos 
-
-Reversível vs. Irreversível
-
-Determinística vs. Probabilística
-
-Sequencial vs. Coexistente
-
-Suficiente vs. Contingente
-
-Necessárias vs. Substituíveis
-
-
-
-
-## O processo de inferência
-
-a. Escolher: uma pergunta de pesquisa.
-
-b. Formalizar: identificando uma **Quantidade de Interesse (QdI)** com base na pergunta.
-
-c. Coletar: dados com base na QdI
-
-d. Supor: classe de modelos, dados fornecidos, QdI e perguntas
-
-e. Estimar de dados: melhor modelo da classe
-
-f. Apresentar Resultados:
-
--- Estimativas de QdI: interpretáveis por qualquer pessoa
-
--- Estimativas de incerteza, como intervalo de confiança (CI), erro padrão (SE), etc.
-
-
-# Conceitos importantes
-
-## População e amostra
-
-![](pop_amostra.png)
-Estatística descritiva e estatística inferencial
-
-Estimativa pontual ou intervalar (veremos mais à frente)
-
-##
-
-População: Conjunto de todas as unidades observáveis de interesse.
-
-Amostra: Subconjunto da população.
-
-Como extrair conclusões sobre a população a partir de uma amostra?
-
- - O candidato A tem 40% das intenções de voto com margem de erro de 2%.
-
-De onde veio essa margem de erro?
-
-
-
-## Estatística descritiva
-
-Nós já vimos que a Estatística responde a problemas estocásticos  “olhando para o passado e estimando probabilidades sobre o que ocorrerá no futuro.” 
-
- - Cabe então perguntar: Onde encontrar registros deste passado (dados)?
-
- - Como guardar esses registros?
-
- - Como descrever esses registros de forma que ajude a responder o problema que queremos?
-
-## De onde vêm os dados
-
-Fontes primárias vs. fontes secundárias
-
-![Estrutura](dados.png)
-
-## Tipos de variáveis 
-
-Para se descrever bem alguma coisa, é preciso saber a natureza daquilo que se deseja descrever. 
-
-Tipicamente, as observações podem ter dois tipos de características: características que indicam **quantidade** ou **qualidade**. 
-
-Por isso, dizemos que existem dois tipos de variáveis: 
-
- - variáveis quantitativas e 
- - variáveis qualitativas.
-
-
-## Tipos e origem (CERVI)
-
-![](tipos_origem.png)
-
-## Tipos
-
-![](tipos_grande.png)
-## No R (+ detalhes aula que vem)
-
-factor
-
-character
-
-discrete
-
-continuous
-
-date and time
-
-## Contínuas vs discretas
-
-![](1.png)
-
-## Atributos
-
-![](atributos.png)
-
-
-## Cuidado!
-
-Algumas características podem ser representadas tanto por uma variável quantitativa como por uma qualitativa.
-
- - Tamanho de um partido (em assentos)
- 
- - Tamanho de um partido (P/M/G)
-
-Às vezes, isto pode ser mais sutil:
-
- - Renda per capita da família em reais
- 
- - Classe de renda (Alta, Média ou Baixa)
-
-Cuidado! Variáveis qualitativas podem ser representadas sob forma de número. Por exemplo:
-
- - Deputados de Direita, Esquerda e Centro poderiam ter atribídas ideologia {1,-1,0} ou {1,3,2}.
-
-Você pode trabalhar com a representação que quiser, mas a tua escolha terá implicações para a tua análise.
-
-
-
-## 
-
-![](tipos_graficos_intro.png)
-
-##
-![](2.png)
-
-
-##
-
-![](3.png)
-
-
-##
-
-![](4.png)
-
-##
-
-![](5.png)
-
-##
-
-![](6.png)
-
-
-##
-
-![](7.png)
-
-
-
-##
-
-![](8.png)
-
-
-
-
-
-## Como modelar
-
-![](quais_modelos.png)
-
-## 
-
-![](hair_rogerio.jpg)
-
-## Como informar
-
-![](quais_graficos.png)
-
-## Gráficos no R
-
-[![](rgraph.png)](https://www.r-graph-gallery.com/index.html)
 
 # Abrindo o R e conhecendo o software
+
+## Passos iniciais
+
+  - R é um ambiente de desenvolvimento para cálculos estatísticos e gráficos (um software de **PROGRAMAÇÃO ESTATÍSTICA**)
+  - Tem dividido com o Python o posto de software mais popular entre cientistas sociais   
+  - Vantagens  
+Software Livre;   
+Documentação completa e acessível;  
+Diversidade de arquivos;  
+Replicabilidade de rotinas
+
+
+## Lei de ouro
+
+  - Se é possível fazer no Excel, é possível fazer no R
+  - Entretanto, se é possível fazer no R, não necessariamente é possível fazer no Excel
+  - Vários cálculos estatísticos mais sofisticados estão disponíveis no R através de pacotes desenvolvidos pela comunidade
+
+
+
+## Habilidades necessárias
+
+  - Escrita:  
+Elementos (ex: numeric, character, factor...);  
+Funções básicas (ex: sum(), table(), sd());  
+Composição do script (ex: c(), for loop);  
+Sensibilidade 
+  - Leitura:  
+Identificação de funções;  
+Diferentes soluções;  
+Pacotes intuitivos;  
+Alertas de erros;
+
+
+
+## Habilidade mais importante
+
+  - Devido à multiplicidade de soluções e de alertas de erros
+  - Também, ao universo de pacotes com diversas funções
+  - A habilidade mais importante é saber pesquisar corretamente no Google  
+Melhor em inglês pela quantidade de fóruns;  
+Melhor fórum: stackoverflow.com
+  - É importante adquirir autonomia com o software
+
+
+
+## RStudio
+
+  - RStudio é um ambiente para desenvolvimento do R (IDE)
+  - Ao longo do curso utilizaremos o Rstudio  
+Utilizando nada dos botões ou possibilidades específicas do RStudio  
+Portanto, utilizaremos a programação somente
+    
+
+
+## Aparência do RStudio
+
+![Aparência](imgs/1.png)
+
+
+## Básico do básico
+
+  - Para começar é importante apresentar um operador e um comando
+  - Hastags  
+Insere comentários sem gerar outputs  
+É importante para organizar e registrar dentro dos scripts  
+
+  - Ctrl + enter (cmd + enter no mac)
+
+Roda as funções e programações escritar nas linhas selecionadas  
+As linhas escritas no ambiente acima do console, onde é possível deixar registrado o script
+    
+Scripts são arquivos de texto
+
+Fluxos: scripts e projetos
+
+## Como sai no R?
+
+```{r,eval=F}
+#Insere comentarios sem rodar o comando
+
+Importante para organizar e
+
+# Erro: unexpected symbol in "Importante para"
+
+##Registrar o que se vai fazer ou foi feito
+
+```
+  - Quando o comando Ctrl + enter é acionado, o campo **Console** registra $>$ e o comando escrito no script, em seguida 
+
+## R como calculadora
+
+  - Um função primordial e básica do R, como software estatístico, é de calculadora
+  - O R possui os operadores básicos da matemática como '+' , '-', '*' e '/'
+
+```{r}
+5 + 5
+
+5 - 3
+
+4 * 9
+
+16 / 2
+
+```
+    
+
+
+## R como calculadora
+
+  - Assim como na matemática, atenção em relação aos ()
+  
+```{r}
+(5 + 6) * 3
+
+5 + 6 * 3
+```
+  - Além das funções de exponencial e raiz quadrada
+  
+  - Respectivamente, ^ e sqrt()
+  
+```{r}
+2 ^ 2
+
+sqrt(36)
+```
+   
+
+
+## Lógica
+
+  - O R permite também avaliações lógicas
+  - Ou seja, o software possui operadores lógicos afim de fazer testes lógicos com resultados de Verdadeiro ou Falso de acordo com a proposição
+  - Os principais operadores são $==$, $<$ , $>$, $<=$ , $>=$ e $!=$
+```{r}
+5 == 5
+
+5 <= 5 / 5
+
+5 * 4 > 5
+
+3 != 6
+```
+    
+
+
+## Lógica
+
+  - Testamos também Verdade e Falsidade
+```{r}
+TRUE == TRUE
+
+TRUE <= FALSE
+```
+  - Assim como estamos caracteres
+```{r}
+"Python" == "python"
+
+"Stata" != "Sasta"
+
+```
+
+
+
+## Operadores lógicos especiais
+
+  - Atenção para os operadores e e ou
+  - O primeiro, para ser verdade, precisa que todos os pressupostos sejam verdadeiros
+```{r}
+(3 == 3) & (4 != 5)
+```
+  - O ou, por sua vez, para ser verdade precisa que apenas 1 pressuposto seja verdadeiro
+```{r}
+(3 != 3) | (4 != 5)
+```
+    
+
+
+## Atribuição
+
+  - Trata-se da famosa setinha que indica objetos (valores, vetores, dataframes) para alguma etiqueta
+  - Dessa maneira, podemos 'salvar' os objetos nas etiquetas para utilizarmos através dessas em qualquer momento ao longo do script
+  - Quando utilizadas em operações, as etiquetas representam aquilo que fora atribuído a elas
+  - Quando criamos a etiqueta, não geramos outputs, apenas quando rodamos diretamente a etiqueta
+  
+```{r}
+sorte <- 5
+```
+
+
+
+## Regras do uso da setinha
+
+  - Atenção, letras maiúsculas e minúsculas importam
+
+```{r,eval=F}
+sorte <- 5
+
+Sorte
+
+# Erro: objeto 'Sorte' não encontrado
+
+```
+
+  - Também não podemos criar etiquetas que começam com números
+```{r,eval=F}
+
+15luck <- 15
+
+# Erro: unexpected symbol in "15luck"
+
+```
+  - Cuidado com a utilização de etiquetas com o mesmo nome de funções, pode gerar confusão no script
+
+
+## Classes
+
+  - Em basicamente tudo que iremos fazer no R, a classe da informação importa
+  - Em termos elementares, ou ao nível dos valores, existem três grandes classes:  
+Numeric (númerico);  
+Logical (lógico);  
+Character ou factor (caracteres);
+  - Para obter a informação sobre a classe, iremos aprender nossa primeira função no R: class()
+    
+
+## Númerico
+
+  - Numeric é a classe composta por valores númericos
+```{r}
+class(sorte)
+
+```
+  - Objetos do tipo "numeric" permitem funções matemáticas como média, mediana etc...
+  - No caso de valores decimais, utilizamos ponto ao invés de vírgula
+```{r, eval=F}
+decimal <- 3,5
+
+# Erro: ',' inesperado in "decimal <- 3,"
+
+decimal <- 3.5
+
+
+```
+    
+
+
+## Lógico
+
+  - Logical é a classe composta por TRUE, FALSE e NA
+  
+```{r}
+vdd <- TRUE
+
+class(vdd)
+
+```
+  
+  - Não é preciso escrever sempre TRUE e FALSE, isto é, podemos resumir para T e F, respectivamente
+  
+  - Por trás dos valores T e F, há valores númericos correspondente a 1 e 0
+  
+```{r}
+T + F
+
+```
+
+
+## Caracteres
+
+  - Characters é a classe composta por nomes
+  
+  - Importante característica é que os nomes devem estar dentro de aspas, caso contrário, o R não reconhecerá como caracter
+  
+```{r}
+nome <- "Alvaro"
+
+nome
+
+class(nome)
+
+```
+    
+
+
+## Caracteres vs Fatores
+
+  - Em termos estatísticos, não há diferença entre caracteres e fatores
+  - Fatores apresentam as categorias por dentro de vetor.
+  - Em termos de manipulação de dataframes, porém, veremos que esses dois objetos terão tratamento distintos, a começar pela importação da base e a definição de string tratada como factor
+    
+
+
+# Vetores
+## O que são vetores?
+ 
+  - Vetores são combinações de valores em uma estrutura unidimensional 
+  - Ou seja, podem ser combinações de números, valores lógicos, nomes e várias outras possibilidades
+  - Por exemplo, combinação de valores pares: 2,4,6,8
+  - Ou a combinações de nomes começando por P: Pedro, Paula, Pietro, Paloma
+  - Combinação de valores lógico: TRUE, FALSE, TRUE, TRUE
+ 
+ 
+## Criação de vetores
+ 
+  - Para criar vetores é importante combinar valores
+  - A função necessária para a criação de vetores, portanto, é a função c(), c de *combine* ou *concatenate*
+```{r}
+c(2,4,6,8)
+
+c("Pedro","Paula","Pietro","Paloma")
+
+c(TRUE,FALSE,TRUE,FALSE)
+``` 
+  
+ 
+## Etiquetas para vetores
+ 
+  - Assim como fizemos com os valores, atribuímos também etiquetas aos vetores
+  - Dessa maneira, podemos trabalhar com as sequências ao longo do script, assim como dar razão ou justificativa aos valores combinados
+```{r}
+n.pares <- c(2,4,6,8)
+
+nomes.com.p <- 
+c("Pedro","Paula","Pietro","Paloma") 
+
+valores.log <- c(TRUE,FALSE,TRUE,FALSE)
+``` 
+  
+ 
+## Classes dos vetores
+ 
+  - Os vetores também possuem classes
+  - Essas categorias determinam as operações possíveis dentro de um vetor
+  - Para obter a informação sobre a classe de um vetor, utilizamos a função class()
+```{r}
+class(n.pares)
+
+class(nomes.com.p)
+
+class(valores.log)
+``` 
+  
+ 
+
+## Comprimento de vetores
+ 
+  - Os vetores podem ser medidos em relação ao seu comprimento
+  - O seu comprimento define a extensão do vetor, assim como quantos elementos estão presentes dentro da combinação de valores
+  - O comprimento pode ser medido pela função length()
+```{r}
+length(n.pares)
+
+length(nomes.com.p)
+
+length(valores.log)
+``` 
+ 
+ 
+ 
+
+## Somatório de vetores
+ 
+  - Para vetores númerico podemos somar os valores de um vetor
+  - A função se chama sum() que corresponde ao $\sum$
+```{r}
+sum(n.pares)
+
+``` 
+  - Em vetores com valores lógicos, com TRUE e FALSE, o sum soma o número de T que temos dentro de um vetor
+
+```{r}
+sum(valores.log)
+
+``` 
+
+ 
+## Somatório de vetores
+ 
+  - A função sum() pode se tornar ainda um contador de um teste
+  - Por exemplo, queremos saber quantos nomes são iguais ao de Pedro no vetor 'nomes.com.p'
+```{r}
+teste1 <- nomes.com.p == "Pedro"
+
+sum(teste1)
+
+teste1
+``` 
+ 
+
+## Seleção de elementos
+ 
+  - Queremos selecionar no vetor nomes.com.p o segundo elemento que é Paula
+  - Vejamos, primeiro, como se compõe o vetor de caracteres nomes.com.p e a lógica do posicionamento dentro do vetor
+```{r}
+nomes.com.p
+``` 
+
+ 
+
+## Seleção de elementos
+ 
+  - Vamos testar se Paula se inclui dentro do vetor sem termos que ver no console
+  - As vezes, vetores são maiores do que temos como exemplo
+  - O teste lógico, portanto, utilizamos o operado %in%, que retorna TRUE, caso o valor esteja incluso no vetor
+```{r}
+"Paula" %in% nomes.com.p
+``` 
+ 
+
+
+## Seleção de elementos
+ 
+  - Algumas operações se restrigem à determinados elementos ou à um conjunto deles incluso dentro de um vetor
+  - Para realizar tais procedimentos precisamos saber escolher elementos
+  - Para isso, utilizaremos o operador '[]' depois de apontar o vetor
+  - Mais especificamente: 
+ Vetor; 
+ []; 
+ Posição ou regra; 
+ 
+ 
+
+## Seleção de elementos
+ 
+  - Para escolhar Paula, portanto, vamos definir como a segunda posição dentro do vetor
+```{r}
+nomes.com.p[2]
+``` 
+  - O posicionamento dos nomes ao longo do vetor determina como seleciona-lo individualmente
+  - Porém, podemos selecionar através do valor
+```{r}
+nomes.com.p[nomes.com.p == "Paula"]
+``` 
+ 
+ 
+## Seleção de elementos
+ 
+  - Selecionamos também o último valor do vetor nomes.com.p
+  - Sabemos que o vetor possui 4 valores utilizando a função length()
+```{r}
+length(nomes.com.p)
+``` 
+  - Assim o último valor é igual a 4
+  - Para selecionarmos o último valor, ou definimos como a posição 4 ou apenas o length() do vetor
+```{r}
+nomes.com.p[4]
+
+nomes.com.p[length(nomes.com.p)]
+
+``` 
+ 
+ 
+## Seleção de elementos
+ 
+  - Para seleção de elementos através de regras, podemos utilizar o vetor númerico de n.pares
+```{r}
+n.pares  <- c(2,4,6,8)
+
+n.pares
+
+``` 
+  - O objetivo aqui é selecionar os elementos maiores que 5, que é a mediana do vetor
+```{r}
+median(n.pares)
+
+``` 
+ 
+ 
+
+## Seleção de elementos
+ 
+  - Selecionamos, assim, os elementos acima da mediana do vetor n.pares, que são os valores 6 e 8
+```{r}
+n.pares[n.pares > 5]
+``` 
+  - Ou ainda podemos definir o valor 5 como o valor da mediana
+  - O resultado é o mesmo, porém, deixa claro ao leitor do seu script que se trata dos valores acima da mediana do vetor n.pares
+```{r}
+n.pares[n.pares > median(n.pares)]
+``` 
+
+# Operações matemáticas
+## Operações com vetores
+  - Em vetores numéricos, podemos fazer operações matemáticas a partir do seu posicionamento
+  - Vamos calcular o alcance do vetor "n.pares"
+```{r}
+#ultimo elemento 
+n.pares[length(n.pares)]
+
+#primeiro elemento
+n.pares[1]
+
+``` 
+  - Subtraindo esses dois elementos, temos o alcance do vetor
+```{r}
+n.pares[length(n.pares)] - n.pares[1]
+
+``` 
+
+
+## Operações com vetores
+ 
+  - Ainda em vetores numéricos, vamos calcular vetores com regras
+  - Selecionamos elementos maiores que 5
+```{r}
+n.pares[n.pares >= 5]
+
+``` 
+  - Queremos duplicar os valores inclusos dentro da condição
+```{r}
+n.pares[n.pares >= 5] * 2
+
+``` 
+  - Por fim, operacionar um conjunto com um elemento
+```{r}
+n.pares[n.pares >= 5] * n.pares[1]
+
+``` 
+ 
+
+## Conjuntos
+ 
+  - Utilizamos a teoria de conjuntos no R com a função de manipular e identificar elementos comuns ou diferente entre vetores
+  - Já temos o vetor "n.pares" e vamos criar um vetor com números naturais
+```{r}
+n.naturais <- c(0,1,2,3,4,5,6,7,8,9)
+n.naturais
+
+``` 
+  - Se perguntarmos por valores que não estão no vetor "n.naturais", o resultado será conjunto vazio
+```{r}
+n.naturais[n.naturais == 10]
+``` 
+ 
+ 
+
+## Conjuntos
+ 
+  - Outro ponto importante é saber se os elementos estão contidos dentro de outro vetor
+  - A pergunta a se fazer é: os elementos do vetor "n.partidos" está contido no vetor "n.naturais"
+  - No R, contidos é igual a \%in\%
+```{r}
+n.pares %in% n.naturais
+
+``` 
+  - Isto é, o vetor "n.pares" está contido no vetor "n.naturais" e é um subconjunto
+  - Outra maneira, porém é utilizando a função is.element()
+```{r}
+is.element(n.pares,n.naturais)
+
+``` 
+ 
+ 
+
+## Conjuntos
+ 
+  - Para encontrar os valores exclusivos de um conjunto, vamos utilizar a escrita da seleção de elementos
+  - Podemos incluir a notação de "!", que quer dizer diferente
+  - Portanto, selecionamos os valores que estão contido no conjunto dos naturais, porém não no conjunto dos valores pares
+```{r}
+n.naturais[!is.element(n.naturais,n.pares)]
+
+``` 
+ 
+
+## Conjuntos
+ 
+  - Por fim, vamos testar se um valor está presente em um desses vetores
+  - Testaremos os valores 1, 11 e 21
+```{r}
+1 %in% c(n.naturais,n.pares)
+
+11 %in% c(n.naturais,n.pares)
+
+21 %in% c(n.naturais,n.pares)
+``` 
+  - Assim, não temos os valores 11 e 21 em nenhum dos vetores, entendidos como conjuntos 
+ 
+ 
+# data.frame
+
+## data.frame
+ 
+  - Um data.frame é o mesmo que uma tabela do SQL ou uma planilha Excel
+  - seus dados provavelmente serão importados para um objeto data.frame 
+
+  - data.frame’s são listas especiais em que todos os elementos possuem o mesmo comprimento.
+
+  - Cada elemento dessa lista pode ser pensado como uma coluna da tabela - ou como uma variável. Uso do '$'
+
+  - Seu comprimento representa o número de linhas - ou seja, de observações
+
+## data.frame
+
+  - Como data.frames's são listas, suas colunas podem ser de classes diferentes. Essa é a grande diferença entre data.frame’s e matrizes.
+
+Funções úteis:
+```{r,eval=F} 
+head() # Mostra as primeiras 6 linhas.
+tail() # Mostra as últimas 6 linhas.
+dim() # Número de linhas e de colunas.
+names() # Os nomes das colunas (variáveis).
+str() # Estrutura do data.frame. Mostra, entre outras coisas, as >classes de cada coluna.
+cbind() # Acopla duas tabelas lado a lado.
+rbind() # Empilha duas tabelas.
+```  
+
+# Pacotes
+## O que são pacotes
+ 
+  - O R possui diversas funções já instaladas dentro da sua programação
+  - Exemplos são sum(), length(), class(), c()
+  - Outras, porém, devem ser instaladas para que possam ser utilizadas pelos usuários
+  - A maneira com a qual instalamos novas funções, não definidas anteriormente no software, é através de pacotes
+  - Pacotes concentram diversas funções para diversas demandas  
+ Importação de dados;  
+ Organização de banco de dados;  
+ Análises estatísticas específicas;  
+ Gráficos diferenciados;  
+ 
+ 
+
+## O que são pacotes
+ 
+  - A instalação de qualquer pacote pode ser feita por dentro do R
+  - Para isso, porém, é preciso primeiro conexão com a internet, já que o R busca o novo pacote no repositório de pacotes
+  - A função para instalar pacote, portanto, é install.packages()
+  - O nome da nova função deve vir, primeiramente entre parenteses
+  - Podemos começar instalando o pacote para importação de bases de dados: foreign
+```{r,eval=F} 
+install.packages("foreign")
+```  
+  - Após alguns segundos, e algumas mensagens no console, a instalação será efetivada
+ 
+ 
+
+## Ativar pacotes
+ 
+  - Cada pacote, inclusive o foreign, tem uma documentação disponível na internet
+  - Nessa documentação estão disponíveis as funções que o pacote possui, além do nome do seu criador
+  - As função não ficam disponíveis assim que o pacote termina a instalação
+  - Para ativar as funções do pacote, é preciso utilizar a função library()
+```{r} 
+library(foreign)
+```  
+  - Repare, que uma vez instalado, o nome do pacote não precisa mais estar entre aspas
+ 
+ 
+## Ativar pacotes
+ 
+  - Portanto, para começarmos o procedimento de instalação do pacote, seguimos os passos a seguir:  
+ Caso não esteja instalado, instalar o pacote através da função install.packages();  
+ Para ativar o pacote, utilizar a função library() sem as aspas no nome do pacote instalado  
+```{r,eval=F} 
+install.packages("foreign")
+
+library(foreign)
+```  
+  - Uma vez instalado o pacote, não é preciso instalar mais a não ser que você reinstale o R
+ 
+ 
+
+# Importação de dados
+## Passo a passo
+ 
+  - A importação é uma das tarefas que demandam mais atenção no R
+  - É preciso ter um conhecimento prévio de como sua base externa está constituída
+  - Outra informação importante é a extensão do arquivo da base
+  - Primeiramente, a informação que deve ser dada ao software é onde está a base - diretório de trabalho
+  - A função necessária é setwd() que define o diretório da sua seção no R
+  - Dentro da função, iremos inserir o local do arquivo  
+ Em caso de Windows, inverta as barras ou duplique;  
+ Não se esqueça das aspas;  
+```{r,eval=F} 
+setwd("/Volumes/Macintosh HD/MQCP_IPOL_2020/Slides/aula 02")
+```  
+ 
+ 
+
+## Passo a passo
+ 
+  - Esse diretório definido significa que as bases e os gráficos produzidos serão enviados para essa pasta
+  - Finalmente, vamos importar as bases de dados
+  - Primeiro, vamos importar a base de extensão txt com o nome baserm
+  - Não é preciso de pacote para esse procedimento
+```{r} 
+lines <- readLines("dados/baserm.txt")
+
+baserm <- read.table(text = lines, sep = '\t')
+```  
+  - Repare que definimos a base dentro das aspas e com a extensão
+  - Na segunda linha, o primeiro argumento é o texto, o segundo argumento trata de como os dados estão separados, geralmente txt vem separado assim
+ 
+
+
+## Passo a passo
+ 
+  - No pacote foreign, a forma mais genérica de importação da base é o read.table()
+  - Entretanto, o pacote apresenta uma série de especialidades, a depender da extensão em questão
+  - Para CSV, vimos que tem a read.csv(). Já para dta, base de origem do stata, temos a função read.dta()
+  - O pacote foreign não possui a extensão xlsx e xls, extensão muito encontrada e comum entre as bases de dados disponíveis
+  - Para isso, vamos instalar um novo pacote readxl
+```{r,eval=F} 
+install.packages("readxl")
+```  
+  - Esse pacote disponibiliza as funções read_xls() e read_xlsx()
+ 
+ 
+
+## Passo a passo
+ 
+  - Vamos ativar as funções disponíveis no pacote readxl com a função library()
+```{r} 
+library(readxl)
+```  
+  - Vamos importar a base controle_cgu_municípios.xlsx
+```{r} 
+cgu <- 
+read_xlsx("dados/controle_cgu_municípios.xlsx")
+```  
+  - Repare que acessamos apenas a primeira página da base
+  - Para acessarmos a segunda páginas, utilizamos o argumento sheet=2
+```{r,eval=F} 
+cgu <- 
+read_xlsx("dados/controle_cgu_municípios.xlsx", 
+sheet = 2)
+```  
+  - Alguns sinais de alerta surgem, porém não se trata de erro
+ 
+
+
+## Importação por pacote 
+ 
+  - Por fim, podemos importar dados através de pacotes
+  - Após ativar o pacote "ElectionsBR", a função legend_fed() fica disponível para a importação
+  - Como toda a função, ou quase todas, possui argumentos importantes:
+      - 'year =' se refere ao ano de extração
+      - 'uf =' se refere à UF
+
+## Importação
+ 
+ - Vamos começar importando dados de coalizões pré-eleitorais (coligações) do DF em 2018, nos retornando um objeto em 'tbl_df' e data frame
+      
+```{r} 
+library(electionsBR)
+leg_df_2018 <- legend_fed(year = 2018,uf="DF")
+
+```  
+      - Provavelmente, demorará alguns segundos, até minutos, para a importação
+      - Além disso, essa técnica demanda acesso à internet
+ 
+
+## Visualizando a base
+ 
+  - Primeira coisa importante de se informar é a classe desses objetos
+  - Temos 4 objetos: baserm, cgu, educacao e pnad2018
+```{r} 
+class(baserm)
+
+class(cgu)
+
+class(leg_df_2018)
+```  
+  
+
+## Visualizando a base
+ 
+  - Uma visão completa da base é o comando View()
+  - Entretanto, cuidado, dependendo do tamanho da base, podemos travar o software
+```{r, eval=F} 
+View(baserm)
+```  
+  - Repare no V maiúsculo, lembre-se que o R é bastante sensível na sua linguagem
+  - O View() abre uma nova aba com a base no formato de grade
+  - Podemos, assim, visualizar a base de dados na forma mais intuitiva
+ 
+ 
+
+## Visualizando a base
+ 
+  - Porém, para bases como a pnad2018, por exemplo, sabemos que é grande demais para sua visualização ser feita através do View()
+  - Algumas funções podem nos ajudar nessa tarefa
+  - A primeira é o dim, que as dimensões da base
+```{r} 
+dim(leg_df_2018)
+```  
+  - O primeiro valor sempre retrata o número de linhas, ou observações, enquanto o segundo valor apresenta o número de colunas, ou variáveis
+  - A função ncol() e length() também indicam quantas colunas, ou variáveis estão presentes na base
+ 
+ 
+
+## Visualizando a base
+ 
+  - Outra função importante na visualização de bases de dados é a lista de nomes
+  - A função names() descreve as variáveis presentes na base
+  - Isso facilita no momento de selecionar as variáveis que entrarão na análise de vocês
+```{r} 
+names(cgu)
+                  
+```  
+ 
+ 
+
+## Visualizando a base
+ 
+  - Outra função possível é o str()
+  - Essa função apresenta o nome das variáveis, a classe de cada uma delas e os primeiros valores
+```{r} 
+str(leg_df_2018)
+```  
+ 
+ 
+
+## Visualizando a base
+ 
+  - Finalmente, a função head() e tail()
+  - A primeira função apresenta os primeiros valores de uma base de dados
+```{r} 
+head(baserm,2)
+```  
+  - O segundo argumento serve para indicar quantas linhas serão apresentadas
+  - Tail(), por outro lado, apresenta os últimos valores de uma base de dados
+```{r} 
+tail(baserm,4)
+```  
+ 
+
+
+# O Universo tidyverse
+
+
+## Manifesto tidyverse
+
+
+O tidyverse, também chamado por muitos de hadleyverse, é um conjunto de pacotes que, por compartilharem esses princípios do manifesto tidy, podem ser utilizados naturalmente em conjunto. Pode-se dizer que existe o R antes do tidyverse e o R depois do tidyverse. 
+
+Os princípios fundamentais do tidyverse são:
+
+- Reutilizar estruturas de dados existentes.
+
+- Organizar funções simples usando o pipe.
+
+- Aderir à programação funcional.
+
+- Projetado para ser usado por seres humanos.
+
+
+## Manifesto tidy
+
+- Tidy Tools Manifesto <https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html>
+
+- Tidy data vignette <https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html>
+
+- Tidy Data paper <http://vita.had.co.nz/papers/tidy-data.pdf>
+
+- Conjunto de pacotes <https://www.tidyverse.org/packages/>
+
+
+## Usando o pipe - O operador %>%
+
+O operador %>% (pipe) foi uma das grandes revoluções recentes do R, tornando a leitura de códigos mais lógica, fácil e compreensível. 
+
+```{r,message=F,warning=F}
+library(tidyverse)
+library(magrittr)
+```
+
+
+## Ideia
+
+A ideia do operador %>% (pipe) é bem simples: usar o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito.
+
+- As duas linhas abaixo são equivalentes.
+
+```{r,eval=F}
+f(x, y)
+```
+
+```{r,eval=F}
+x %>% f(y)
+```
+
+## E se aumentarmos o código?
+
+Vamos calcular a raiz quadrada da soma dos valores de 1 a 4. `r x <- c(1, 2, 3, 4)`
+
+Primeiro, sem o pipe.
+```{r}
+sqrt(sum(x))
+```
+
+
+Agora com o pipe.
+```{r}
+x %>% 
+  sum %>% 
+  sqrt
+```
+
+
+## E se realmente tivermos muitas funções aninhadas?
+
+A utilização do pipe transforma um código confuso e difícil de ser lido em algo *simples e intuitivo*.
+
+
+## Receita de bolo - sem pipe
+
+Tente entender o que é preciso fazer. 
+
+```{r, eval=FALSE}
+esfrie(
+  asse(
+    coloque(
+      bata(
+        acrescente(
+          recipiente(rep("farinha", 2), "água", 
+                     "fermento", "leite", "óleo"), 
+          "farinha", até = "macio"), 
+        duração = "3min"), 
+      lugar = "forma", tipo = "grande", 
+      untada = TRUE), duração = "50min"), 
+  "geladeira", "20min")
+```
+
+## Receita de bolo - com pipe
+
+Desistiu? Agora veja como fica escrevendo com o `%>%`:
+
+```{r, eval=FALSE}
+
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
+  bata(duração = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = TRUE) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+
+```
+
+
+
+# Importação no tidyverse
+
+## Importação com `readr`, `readxl`, `haven` e `DBI`
+
+
+No tidyverse, geralmente
+
+- Funções `read_<formato>` servem para ler um arquivo no formato `<formato>`
+- Funções `write_<formato>` servem para escrever num arquivo com o formato `<formato>`
+
+
+## Arquivos de texto
+
+- `csv`, `tsv`, `txt`, ...
+
+- Para esses aqui, usar o pacote `readr`
+- Você também pode experimentar o `data.table::fread`
+
+
+## Arquivos binários
+
+- `.RData`, `.rds`, `.feather`, `.fst`
+- `.dta` (Stata), `.sas7bdat` (SAS), `.sav` (SPSS)
+
+- Ler com `readr`, `haven`, `feather`, `fst`.
+
+## Bancos de dados
+
+- `MySQL`, `SQL Server`, `PostgreSQL`, `SQLite`, ...
+- `Spark`, `MongoDB`, `Hive`, ...
+
+- Utilizar pacotes `DBI` e `odbc`
+
+## Tidy data e janitor
+
+Veremos mais à frente, mas janitor::clean_names() é uma ferramenta tidy
+
+```{r}
+library(janitor)
+```
+
+
+
+# Pacotes `dplyr` e `tidyr`
+
+## Conjunto de dados
+
+Vamos trabalhar com a base `decisoes`, que contém decisões do Tribunal de Justiça de São Paulo
+
+```{r}
+decisoes <- read_rds("dados/decisoes.rds")
+glimpse(decisoes)
+```
+
+
+```{r}
+
+decisoes <- read_rds("dados/decisoes.rds") %>%
+  janitor::clean_names() # com dois pontos eu não preciso usar library
+glimpse(decisoes)
+
+```
+
+
+## Características do `dplyr`
+
+
+- A utilização é facilitada com o emprego do operador `%>%`
+
+
+- No primeiro argumento colocamos o `data.frame` ou o `tibble`, e nos outros argumentos colocamos o que queremos fazer.
+
+
+## As cinco funções principais do `dplyr`
+
+- `select`: selecionar colunas
+
+- `filter`: filtrar linhas
+
+- `mutate`: criar colunas
+
+- `summarise`: sumarizar colunas
+
+- `arrange`: ordenar linhas
+
+# select
+
+## `select`
+
+- Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
+- Possível colocar nomes, índices, e intervalos de variáveis com `:`.
+
+## Em ação
+
+```{r}
+decisoes %>% 
+  select(id_decisao, n_processo, municipio, juiz)
+```
+
+## Em ação
+
+```{r}
+decisoes %>% 
+  select(classe_assunto:id_decisao, juiz)
+```
+
+## Em ação
+
+```{r}
+decisoes %>% 
+  select(id_decisao, starts_with('data_'))
+```
+
+
+## Operações
+
+- selecione as colunas que acabam com "cisao".
+
+```{r}
+decisoes %>% 
+  select(ends_with("cisao"))
+```
+
+## Operações 
+- tire as colunas de texto = 'txt_decisao' e classe/assunto = 'classe_assunto'.
+    - Dica: veja os exemplos de `?select` em `Drop variables ...`
+
+```{r}
+decisoes %>% 
+  select(-classe_assunto, -txt_decisao)
+```
+
+# filter
+
+## `filter`
+
+- Use `,` ou `&` para "e" e `|` para "ou".
+- Condições separadas por vírgulas é o mesmo que separar por `&`.
+
+## `filter` em ação
+
+```{r}
+decisoes %>% 
+  select(n_processo, id_decisao, municipio, juiz) %>% 
+  filter(municipio == 'São Paulo')
+```
+
+## Dica: usar `%in%`
+```{r, echo=T,warning=F,message=F}
+library(lubridate) # para trabalhar com as datas
+#`day(dmy(data_decisao))` pega o dia da decisão. 
+```
+
+```{r}
+decisoes %>% 
+  select(id_decisao, municipio, data_decisao, juiz) %>% 
+  # municipio igual a campinas ou jaú, OU dia da decisão maior ou igual a 25
+  filter(municipio %in% c('Campinas', 'Jaú') | day(dmy(data_decisao)) >= 25)
+```
+
+
+
+## Mais ação
+
+```{r}
+decisoes %>% 
+  select(juiz) %>% 
+  # filtra juízes que têm `Z` ou `z` no nome
+  filter(str_detect(juiz, regex("z", ignore_case = TRUE))) %>% 
+  # conta e ordena os juizes em ordem decrescente
+  count(juiz, sort = TRUE) %>%
+  head(5)
+```
+
+## **Obs** 
+
+A função `str_detect()` retorna `TRUE` se um elemento do vetor de textos é compatível com uma *expressão regular*. Estudaremos o pacote `stringr` e as funções `str_*` em outra aula.
+
+
+## 
+
+- filtre apenas casos em que `id_decisao` não é `NA`
+
+
+```{r}
+decisoes %>% 
+  filter(is.na(id_decisao))
+```
+
+
+##
+
+- filtre todas as decisões de 2018.
+
+  -- Dica: função `lubridate::year()`
+
+
+```{r}
+decisoes %>% 
+  filter(year(dmy(data_decisao)) == 2018)
+```
+
+# mutate
+
+## `mutate`
+
+- Aceita várias novas colunas iterativamente.
+
+- Novas variáveis devem ter o mesmo `length` que o `nrow` do bd original ou `1`.
+
+## `mutate` em ação
+```{r}
+decisoes %>% 
+  select(n_processo, data_decisao, data_registro) %>% 
+  mutate(tempo = dmy(data_registro) - dmy(data_decisao))
+```
+
+## 
+
+- Crie uma coluna binária `drogas` que vale `TRUE` se no texto da decisão algo é falado de drogas e `FALSE` caso contrário. 
+ -- Dica: `str_detect`
+
+Obs.: Considere tanto a palavra 'droga' como seus sinônimos, ou algum exemplo de droga e retire os casos em que `txt_decisao` é vazio
+
+
+```{r }
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>% 
+  mutate(txt_decisao = tolower(txt_decisao),
+         droga = str_detect(txt_decisao,
+    "droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na")) %>%
+  dplyr::select(n_processo,droga) 
+  
+```
+
+# summarise
+
+## `summarise`
+
+- Retorna um vetor de tamanho `1` a partir de uma operação com as variáveis (aplicação de uma função).
+- Geralmente é utilizado em conjunto com `group_by()`.
+- Algumas funções importantes: `n()`, `n_distinct()`.
+
+## Em ação
+
+```{r,eval=F}
+decisoes %>% 
+  select(n_processo, municipio, data_decisao) %>%
+  #        pega ano da decisão
+  mutate(ano_julgamento = year(dmy(data_decisao)),
+         # pega o ano do processo 0057003-20.2017.8.26.0000" -> "2017"
+         ano_proc = str_sub(n_processo, 12, 15),
+         # transforma o ano em inteiro
+         ano_proc = as.numeric(ano_proc),
+         # calcula o tempo em anos
+         tempo_anos = ano_julgamento - ano_proc) %>% 
+  group_by(municipio) %>% 
+  summarise(n = n(),
+            media_anos = mean(tempo_anos),
+            min_anos = min(tempo_anos),
+            max_anos = max(tempo_anos)) 
+```
+
+## Resultado
+
+
+```{r,echo=F}
+decisoes %>% 
+  select(n_processo, municipio, data_decisao) %>%
+  #        pega ano da decisão
+  mutate(ano_julgamento = year(dmy(data_decisao)),
+         # pega o ano do processo 0057003-20.2017.8.26.0000" -> "2017"
+         ano_proc = str_sub(n_processo, 12, 15),
+         # transforma o ano em inteiro
+         ano_proc = as.numeric(ano_proc),
+         # calcula o tempo em anos
+         tempo_anos = ano_julgamento - ano_proc) %>% 
+  group_by(municipio) %>% 
+  summarise(n = n(),
+            media_anos = mean(tempo_anos),
+            min_anos = min(tempo_anos),
+            max_anos = max(tempo_anos)) 
+```
+
+
+## usando `count()`
+
+A função `count()`, simplifica um `group_by %>% summarise %>% ungroup`:
+
+```{r}
+decisoes %>% 
+  count(juiz, sort = TRUE) %>% 
+  mutate(prop = n / sum(n), 
+         prop = scales::percent(prop))
+```
+
+
+## + fácil ainda
+
+mas sem formato %
+
+```{r}
+decisoes %>% 
+  count(juiz, sort = TRUE) %>% 
+  mutate(prop = prop.table(n))
+```
+
+
+# arrange
+
+## `arrange`
+
+- Simplesmente ordena de acordo com as opções.
+
+- Utilizar `desc()` para ordem decrescente ou o sinal de menos (`-`).
+
+## 
+
+- Quem são os cinco relatores mais prolixos?
+
+ -- Dica: use `str_length()`
+ -- Lembre-se da função `head()`
+
+## 
+
+```{r}
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>% 
+  mutate(tamanho = str_length(txt_decisao)) %>% 
+  group_by(juiz) %>% 
+  summarise(n = n(), 
+            tamanho_mediana = median(tamanho)) %>% 
+  filter(n >= 10) %>% 
+  arrange(desc(tamanho_mediana)) %>%
+  head()
+
+
+```
+
+
+
