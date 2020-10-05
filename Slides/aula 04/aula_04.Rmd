@@ -1,0 +1,1157 @@
+---
+title: "Estruturas de dados e manipulação avançada"
+author: "Frederico Bertholini"
+date: "28.set.2020"
+output:
+  ioslides_presentation:
+    highlight: tango
+  beamer_presentation:
+    theme: Berkeley
+    colortheme: dove
+    fonttheme: structurebold
+    keep_tex: yes
+    toc: yes
+    number_sections: yes
+    slide_level: 2
+    highlight: tango
+  slidy_presentation:
+    highlight: tango
+fontsize: 10pt
+subtitle: Métodos Quantitativos Aplicados à Ciência Política
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,eval=T)
+```
+
+
+# data.frame
+
+## data.frame
+ 
+  - Um data.frame é o mesmo que uma tabela do SQL ou uma planilha Excel
+  - seus dados provavelmente serão importados para um objeto data.frame 
+
+  - data.frame’s são listas especiais em que todos os elementos possuem o mesmo comprimento.
+
+  - Cada elemento dessa lista pode ser pensado como uma coluna da tabela - ou como uma variável. Uso do '$'
+
+  - Seu comprimento representa o número de linhas - ou seja, de observações
+
+## data.frame
+
+  - Como data.frames's são listas, suas colunas podem ser de classes diferentes. Essa é a grande diferença entre data.frame’s e matrizes.
+
+Funções úteis:
+```{r,eval=F} 
+head() # Mostra as primeiras 6 linhas.
+tail() # Mostra as últimas 6 linhas.
+dim() # Número de linhas e de colunas.
+names() # Os nomes das colunas (variáveis).
+str() # Estrutura do data.frame. Mostra, entre outras coisas, as >classes de cada coluna.
+cbind() # Acopla duas tabelas lado a lado.
+rbind() # Empilha duas tabelas.
+```  
+
+# Pacotes
+## O que são pacotes
+ 
+  - O R possui diversas funções já instaladas dentro da sua programação
+  - Exemplos são sum(), length(), class(), c()
+  - Outras, porém, devem ser instaladas para que possam ser utilizadas pelos usuários
+  - A maneira com a qual instalamos novas funções, não definidas anteriormente no software, é através de pacotes
+  - Pacotes concentram diversas funções para diversas demandas  
+ Importação de dados;  
+ Organização de banco de dados;  
+ Análises estatísticas específicas;  
+ Gráficos diferenciados;  
+ 
+ 
+
+## O que são pacotes
+ 
+  - A instalação de qualquer pacote pode ser feita por dentro do R
+  - Para isso, porém, é preciso primeiro conexão com a internet, já que o R busca o novo pacote no repositório de pacotes
+  - A função para instalar pacote, portanto, é install.packages()
+  - O nome da nova função deve vir, primeiramente entre parenteses
+  - Podemos começar instalando o pacote para importação de bases de dados: foreign
+```{r,eval=F} 
+install.packages("foreign")
+```  
+  - Após alguns segundos, e algumas mensagens no console, a instalação será efetivada
+ 
+ 
+
+## Ativar pacotes
+ 
+  - Cada pacote, inclusive o foreign, tem uma documentação disponível na internet
+  - Nessa documentação estão disponíveis as funções que o pacote possui, além do nome do seu criador
+  - As função não ficam disponíveis assim que o pacote termina a instalação
+  - Para ativar as funções do pacote, é preciso utilizar a função library()
+```{r} 
+library(foreign)
+```  
+  - Repare, que uma vez instalado, o nome do pacote não precisa mais estar entre aspas
+ 
+ 
+## Ativar pacotes
+ 
+  - Portanto, para começarmos o procedimento de instalação do pacote, seguimos os passos a seguir:  
+ Caso não esteja instalado, instalar o pacote através da função install.packages();  
+ Para ativar o pacote, utilizar a função library() sem as aspas no nome do pacote instalado  
+```{r,eval=F} 
+install.packages("foreign")
+
+library(foreign)
+```  
+  - Uma vez instalado o pacote, não é preciso instalar mais a não ser que você reinstale o R
+ 
+ 
+
+# Importação de dados
+## Passo a passo
+ 
+  - A importação é uma das tarefas que demandam mais atenção no R
+  - É preciso ter um conhecimento prévio de como sua base externa está constituída
+  - Outra informação importante é a extensão do arquivo da base
+  - Primeiramente, a informação que deve ser dada ao software é onde está a base - diretório de trabalho
+  - A função necessária é setwd() que define o diretório da sua seção no R
+  - Dentro da função, iremos inserir o local do arquivo  
+ Em caso de Windows, inverta as barras ou duplique;  
+ Não se esqueça das aspas;  
+ 
+```{r,eval=F} 
+
+setwd("/Volumes/Macintosh HD/MQCP_IPOL_2020/Slides/aula 03") # mmudando meu direto
+
+```  
+ 
+ 
+
+## Passo a passo
+ 
+  - Esse diretório definido significa que as bases e os gráficos produzidos serão enviados para essa pasta
+  - Finalmente, vamos importar as bases de dados
+  - Primeiro, vamos importar a base de extensão txt com o nome baserm
+  - Não é preciso de pacote para esse procedimento
+```{r} 
+lines <- readLines("dados/baserm.txt")
+
+baserm <- read.table(text = lines, sep = '\t')
+```  
+  - Repare que definimos a base dentro das aspas e com a extensão
+  - Na segunda linha, o primeiro argumento é o texto, o segundo argumento trata de como os dados estão separados, geralmente txt vem separado assim
+ 
+
+
+## Passo a passo
+ 
+  - No pacote foreign, a forma mais genérica de importação da base é o read.table()
+  - Entretanto, o pacote apresenta uma série de especialidades, a depender da extensão em questão
+  - Para CSV, vimos que tem a read.csv(). Já para dta, base de origem do stata, temos a função read.dta()
+  - O pacote foreign não possui a extensão xlsx e xls, extensão muito encontrada e comum entre as bases de dados disponíveis
+  - Para isso, vamos instalar um novo pacote readxl
+```{r,eval=F} 
+install.packages("readxl")
+```  
+  - Esse pacote disponibiliza as funções read_xls() e read_xlsx()
+ 
+ 
+
+## Passo a passo
+ 
+  - Vamos ativar as funções disponíveis no pacote readxl com a função library()
+```{r} 
+library(readxl)
+```  
+  - Vamos importar a base controle_cgu_municípios.xlsx
+```{r} 
+cgu <- 
+read_xlsx("dados/controle_cgu_municípios.xlsx")
+```  
+  - Repare que acessamos apenas a primeira página da base
+  - Para acessarmos a segunda páginas, utilizamos o argumento sheet=2
+```{r,eval=F} 
+cgu <- 
+read_xlsx("dados/controle_cgu_municípios.xlsx", 
+sheet = 2)
+```  
+  - Alguns sinais de alerta surgem, porém não se trata de erro
+ 
+
+
+## Importação por pacote 
+ 
+  - Por fim, podemos importar dados através de pacotes
+  - Após ativar o pacote "ElectionsBR", a função legend_fed() fica disponível para a importação
+  - Como toda a função, ou quase todas, possui argumentos importantes:
+      - 'year =' se refere ao ano de extração
+      - 'uf =' se refere à UF
+
+## Importação
+ 
+ - Vamos começar importando dados de coalizões pré-eleitorais (coligações) do DF em 2018, nos retornando um objeto em 'tbl_df' e data frame
+      
+```{r} 
+library(electionsBR)
+leg_df_2018 <- legend_fed(year = 2018,uf="DF")
+
+```  
+      - Provavelmente, demorará alguns segundos, até minutos, para a importação
+      - Além disso, essa técnica demanda acesso à internet
+ 
+
+## Visualizando a base
+ 
+  - Primeira coisa importante de se informar é a classe desses objetos
+  - Temos 4 objetos: baserm, cgu, educacao e pnad2018
+```{r} 
+class(baserm)
+
+class(cgu)
+
+class(leg_df_2018)
+```  
+  
+
+## Visualizando a base
+ 
+  - Uma visão completa da base é o comando View()
+  - Entretanto, cuidado, dependendo do tamanho da base, podemos travar o software
+```{r, eval=F} 
+View(baserm)
+```  
+  - Repare no V maiúsculo, lembre-se que o R é bastante sensível na sua linguagem
+  - O View() abre uma nova aba com a base no formato de grade
+  - Podemos, assim, visualizar a base de dados na forma mais intuitiva
+ 
+ 
+
+## Visualizando a base
+ 
+  - Porém, para bases como a pnad2018, por exemplo, sabemos que é grande demais para sua visualização ser feita através do View()
+  - Algumas funções podem nos ajudar nessa tarefa
+  - A primeira é o dim, que as dimensões da base
+```{r} 
+dim(leg_df_2018)
+```  
+  - O primeiro valor sempre retrata o número de linhas, ou observações, enquanto o segundo valor apresenta o número de colunas, ou variáveis
+  - A função ncol() e length() também indicam quantas colunas, ou variáveis estão presentes na base
+ 
+ 
+
+## Visualizando a base
+ 
+  - Outra função importante na visualização de bases de dados é a lista de nomes
+  - A função names() descreve as variáveis presentes na base
+  - Isso facilita no momento de selecionar as variáveis que entrarão na análise de vocês
+```{r} 
+names(cgu)
+                  
+```  
+ 
+ 
+
+## Visualizando a base
+ 
+  - Outra função possível é o str()
+  - Essa função apresenta o nome das variáveis, a classe de cada uma delas e os primeiros valores
+```{r} 
+str(leg_df_2018)
+```  
+ 
+ 
+
+## Visualizando a base
+ 
+  - Finalmente, a função head() e tail()
+  - A primeira função apresenta os primeiros valores de uma base de dados
+```{r} 
+head(baserm,2)
+```  
+  - O segundo argumento serve para indicar quantas linhas serão apresentadas
+  - Tail(), por outro lado, apresenta os últimos valores de uma base de dados
+```{r} 
+tail(baserm,4)
+```  
+ 
+
+
+# O Universo tidyverse
+
+
+## Manifesto tidyverse
+
+
+O tidyverse, também chamado por muitos de hadleyverse, é um conjunto de pacotes que, por compartilharem esses princípios do manifesto tidy, podem ser utilizados naturalmente em conjunto. Pode-se dizer que existe o R antes do tidyverse e o R depois do tidyverse. 
+
+Os princípios fundamentais do tidyverse são:
+
+- Reutilizar estruturas de dados existentes.
+
+- Organizar funções simples usando o pipe.
+
+- Aderir à programação funcional.
+
+- Projetado para ser usado por seres humanos.
+
+
+## Manifesto tidy
+
+- Tidy Tools Manifesto <https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html>
+
+- Tidy data vignette <https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html>
+
+- Tidy Data paper <http://vita.had.co.nz/papers/tidy-data.pdf>
+
+- Conjunto de pacotes <https://www.tidyverse.org/packages/>
+
+
+## Usando o pipe - O operador %>%
+
+O operador %>% (pipe) foi uma das grandes revoluções recentes do R, tornando a leitura de códigos mais lógica, fácil e compreensível. 
+
+```{r,message=F,warning=F}
+library(tidyverse)
+library(magrittr)
+```
+
+
+## Ideia
+
+A ideia do operador %>% (pipe) é bem simples: usar o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito.
+
+- As duas linhas abaixo são equivalentes.
+
+```{r,eval=F}
+f(x, y)
+```
+
+```{r,eval=F}
+x %>% f(y)
+```
+
+## E se aumentarmos o código?
+
+Vamos calcular a raiz quadrada da soma dos valores de 1 a 4. `r x <- c(1, 2, 3, 4)`
+
+Primeiro, sem o pipe.
+```{r}
+sqrt(sum(x))
+```
+
+
+Agora com o pipe.
+```{r}
+x %>% 
+  sum %>% 
+  sqrt
+```
+
+
+## E se realmente tivermos muitas funções aninhadas?
+
+A utilização do pipe transforma um código confuso e difícil de ser lido em algo *simples e intuitivo*.
+
+
+## Receita de bolo - sem pipe
+
+Tente entender o que é preciso fazer. 
+
+```{r, eval=FALSE}
+esfrie(
+  asse(
+    coloque(
+      bata(
+        acrescente(
+          recipiente(rep("farinha", 2), "água", 
+                     "fermento", "leite", "óleo"), 
+          "farinha", até = "macio"), 
+        duração = "3min"), 
+      lugar = "forma", tipo = "grande", 
+      untada = TRUE), duração = "50min"), 
+  "geladeira", "20min")
+```
+
+## Receita de bolo - com pipe
+
+Desistiu? Agora veja como fica escrevendo com o `%>%`:
+
+```{r, eval=FALSE}
+
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
+  bata(duração = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = TRUE) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+
+```
+
+
+
+# Importação no tidyverse
+
+## Importação com `readr`, `readxl`, `haven` e `DBI`
+
+
+No tidyverse, geralmente
+
+- Funções `read_<formato>` servem para ler um arquivo no formato `<formato>`
+- Funções `write_<formato>` servem para escrever num arquivo com o formato `<formato>`
+
+
+## Arquivos de texto
+
+- `csv`, `tsv`, `txt`, ...
+
+- Para esses aqui, usar o pacote `readr`
+- Você também pode experimentar o `data.table::fread`
+
+
+## Arquivos binários
+
+- `.RData`, `.rds`, `.feather`, `.fst`
+- `.dta` (Stata), `.sas7bdat` (SAS), `.sav` (SPSS)
+
+- Ler com `readr`, `haven`, `feather`, `fst`.
+
+## Bancos de dados
+
+- `MySQL`, `SQL Server`, `PostgreSQL`, `SQLite`, ...
+- `Spark`, `MongoDB`, `Hive`, ...
+
+- Utilizar pacotes `DBI` e `odbc`
+
+## Tidy data e janitor
+
+Veremos mais à frente, mas janitor::clean_names() é uma ferramenta tidy
+
+```{r}
+library(janitor)
+
+```
+
+
+
+# Pacotes `dplyr` e `tidyr`
+
+## Conjunto de dados
+
+Vamos trabalhar com a base `decisoes`, que contém decisões do Tribunal de Justiça de São Paulo
+
+```{r}
+decisoes <- read_rds("dados/decisoes.rds")
+glimpse(decisoes)
+```
+
+
+```{r}
+
+decisoes <- read_rds("dados/decisoes.rds") %>%
+  janitor::clean_names() # com dois pontos eu não preciso usar library
+glimpse(decisoes)
+
+```
+
+
+## Características do `dplyr`
+
+
+- A utilização é facilitada com o emprego do operador `%>%`
+
+
+- No primeiro argumento colocamos o `data.frame` ou o `tibble`, e nos outros argumentos colocamos o que queremos fazer.
+
+
+## As cinco funções principais do `dplyr`
+
+- `select`: selecionar colunas
+
+- `filter`: filtrar linhas
+
+- `mutate`: criar colunas
+
+- `summarise`: sumarizar colunas
+
+- `arrange`: ordenar linhas
+
+# select
+
+## `select`
+
+- Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
+- Possível colocar nomes, índices, e intervalos de variáveis com `:`.
+
+## Em ação
+
+```{r}
+decisoes %>% 
+  select(id_decisao, n_processo, municipio, juiz)
+```
+
+## Em ação
+
+```{r}
+decisoes %>% 
+  select(classe_assunto:id_decisao, juiz)
+```
+
+## Em ação
+
+```{r}
+decisoes %>% 
+  select(id_decisao, starts_with('data_'))
+```
+
+
+## Operações
+
+- selecione as colunas que acabam com "cisao".
+
+```{r}
+decisoes %>% 
+  select(ends_with("cisao"))
+```
+
+## Operações 
+- tire as colunas de texto = 'txt_decisao' e classe/assunto = 'classe_assunto'.
+    - Dica: veja os exemplos de `?select` em `Drop variables ...`
+
+```{r}
+decisoes %>% 
+  select(-classe_assunto, -txt_decisao)
+```
+
+# filter
+
+## `filter`
+
+- Use `,` ou `&` para "e" e `|` para "ou".
+- Condições separadas por vírgulas é o mesmo que separar por `&`.
+
+## `filter` em ação
+
+```{r}
+decisoes %>% 
+  select(n_processo, id_decisao, municipio, juiz) %>% 
+  filter(municipio == 'São Paulo')
+```
+
+## Dica: usar `%in%`
+```{r, echo=T,warning=F,message=F}
+library(lubridate) # para trabalhar com as datas
+#`day(dmy(data_decisao))` pega o dia da decisão. 
+```
+
+```{r}
+decisoes %>% 
+  select(id_decisao, municipio, data_decisao, juiz) %>% 
+  # municipio igual a campinas ou jaú, OU dia da decisão maior ou igual a 25
+  filter(municipio %in% c('Campinas', 'Jaú') & day(dmy(data_decisao)) >= 25)
+```
+
+
+
+## Mais ação
+
+```{r}
+decisoes %>% 
+  select(juiz) %>% 
+  # filtra juízes que têm `Z` ou `z` no nome
+  filter(str_detect(juiz, regex("z", ignore_case = TRUE))) %>% 
+  # conta e ordena os juizes em ordem decrescente
+  count(juiz, sort = TRUE) %>%
+  head(5)
+```
+
+## **Obs** 
+
+A função `str_detect()` retorna `TRUE` se um elemento do vetor de textos é compatível com uma *expressão regular*. Estudaremos o pacote `stringr` e as funções `str_*` em outra aula.
+
+
+## 
+
+- filtre apenas casos em que `id_decisao` não é `NA`
+
+
+```{r}
+decisoes %>% 
+  filter(is.na(id_decisao))
+```
+
+
+##
+
+- filtre todas as decisões de 2018.
+
+  -- Dica: função `lubridate::year()`
+
+
+```{r}
+decisoes %>% 
+  filter(year(dmy(data_decisao)) == 2018)
+```
+
+# mutate
+
+## `mutate`
+
+- Aceita várias novas colunas iterativamente.
+
+- Novas variáveis devem ter o mesmo `length` que o `nrow` do bd original ou `1`.
+
+## `mutate` em ação
+```{r}
+decisoes %>% 
+  select(n_processo, data_decisao, data_registro) %>% 
+  mutate(tempo = dmy(data_registro) - dmy(data_decisao))
+```
+
+## 
+
+- Crie uma coluna binária `drogas` que vale `TRUE` se no texto da decisão algo é falado de drogas e `FALSE` caso contrário. 
+ -- Dica: `str_detect`
+
+Obs.: Considere tanto a palavra 'droga' como seus sinônimos, ou algum exemplo de droga e retire os casos em que `txt_decisao` é vazio
+
+
+```{r }
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>% # filtrando quem não é NA
+  mutate(txt_decisao = tolower(txt_decisao),
+         droga = str_detect(txt_decisao,
+    "droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na")
+    ) %>%
+  dplyr::select(n_processo,droga) 
+  
+```
+
+# summarise
+
+## `summarise`
+
+- Retorna um vetor de tamanho `1` a partir de uma operação com as variáveis (aplicação de uma função).
+- Geralmente é utilizado em conjunto com `group_by()`.
+- Algumas funções importantes: `n()`, `n_distinct()`.
+
+## Em ação
+
+```{r,eval=F}
+decisoes %>% 
+  select(n_processo, municipio, data_decisao) %>%
+  #        pega ano da decisão
+  mutate(ano_julgamento = year(dmy(data_decisao)),
+         # pega o ano do processo 0057003-20.2017.8.26.0000" -> "2017"
+         ano_proc = str_sub(n_processo, 12, 15),
+         # transforma o ano em inteiro
+         ano_proc = as.numeric(ano_proc),
+         # calcula o tempo em anos
+         tempo_anos = ano_julgamento - ano_proc) %>% 
+  group_by(municipio) %>% 
+  summarise(n = n(),
+            media_anos = mean(tempo_anos,na.rm=T),
+            min_anos = min(tempo_anos,na.rm=T),
+            max_anos = max(tempo_anos,na.rm=T)) 
+```
+
+## Resultado
+
+
+```{r,echo=F}
+decisoes %>% 
+  select(n_processo, municipio, data_decisao) %>%
+  #        pega ano da decisão
+  mutate(ano_julgamento = year(dmy(data_decisao)),
+         # pega o ano do processo 0057003-20.2017.8.26.0000" -> "2017"
+         ano_proc = str_sub(n_processo, 12, 15),
+         # transforma o ano em inteiro
+         ano_proc = as.numeric(ano_proc),
+         # calcula o tempo em anos
+         tempo_anos = ano_julgamento - ano_proc) %>% 
+  group_by(municipio) %>% 
+  summarise(n = n(),
+            media_anos = mean(tempo_anos),
+            min_anos = min(tempo_anos),
+            max_anos = max(tempo_anos)) 
+```
+
+
+## usando `count()`
+
+A função `count()`, simplifica um `group_by %>% summarise %>% ungroup`:
+
+```{r}
+decisoes %>% 
+  count(juiz, sort = TRUE) %>% 
+  mutate(prop = n / sum(n), 
+         prop = scales::percent(prop))
+```
+
+
+## + fácil ainda
+
+mas sem formato %
+
+```{r}
+decisoes %>% 
+  count(juiz, sort = TRUE) %>% 
+  mutate(prop = prop.table(n))
+```
+
+
+# arrange
+
+## `arrange`
+
+- Simplesmente ordena de acordo com as opções.
+
+- Utilizar `desc()` para ordem decrescente ou o sinal de menos (`-`).
+
+## 
+
+- Quem são os cinco relatores mais prolixos?
+
+ -- Dica: use `str_length()`
+ -- Lembre-se da função `head()`
+
+## 
+
+```{r}
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>% 
+  mutate(tamanho = str_length(txt_decisao)) %>% 
+  group_by(juiz) %>% 
+  summarise(n = n(), 
+            tamanho_mediana = median(tamanho)) %>% 
+  filter(n >= 10) %>% 
+  arrange(desc(tamanho_mediana)) %>%
+  head()
+
+
+```
+
+# tydyr
+
+
+## Alterando o formato de dados
+
+Até agora, estudamos os principais ferramentas de transformação de dados do `dplyr`. Agora vamos aumentar nossa caixa-de-ferramentas com `tidyr`
+
+
+- Carregando uma nova base de dados, que completa a de decisões.
+
+```{r echo=TRUE}
+processos <- read_rds("dados/processos_nested.rds")
+```
+
+
+## Fomato tidy
+
+- Hadley Wickham <http://r4ds.had.co.nz/tidy-data.html>
+
+
+## Funções do pacote
+
+
+- Enquanto o `dplyr` faz recortes na base (com `filter()`e `select()`) e adições simples (`mutate()`, `summarise()`), o `tidyr` mexe no **formato** da tabela (`gather()`, `spread()`) e faz modificações menos triviais.
+
+
+- As funções do `tidyr` geralmente vêm em pares com seus inversos:
+    - `gather()` e `spread()`, -> substituídas por `pivot_longer` e `pivot_wider`
+    - `nest()` e `unnest()`,
+    - `separate()` e `unite()`
+
+
+## Onde estamos
+
+
+<http://r4ds.had.co.nz/wrangle-intro.html>
+
+```{r, out.width="90%", echo=FALSE, fig.align='center',eval=F}
+knitr::include_graphics("imgs/wrangle.png")
+```
+
+
+## `gather()` 
+
+- `gather()` empilha o banco de dados
+
+- `pivot_longer` empilha de um jeito ainda mais fácil
+
+```{r, warning=FALSE, message=FALSE}
+decisoes %>% 
+  filter(!is.na(id_decisao)) %>% 
+  select(id_decisao:data_registro) %>% 
+  # 1. nome da coluna que vai guardar os nomes de colunas empilhadas
+  # 2. nome da coluna que vai guardar os valores das colunas
+  # 3. seleção das colunas a serem empilhadas
+  gather(key="variavel", value="valor", -id_decisao) %>% 
+  arrange(id_decisao)
+```
+
+## `pivot_longer`
+
+Base `relig_income` do `tidyr` 3 variáveis:
+
+  - religion, nas linhas
+  - income, nas colunas  e
+  - count, nas células
+
+```{r}
+tidyr::relig_income
+```
+
+##
+
+```{r}
+tidyr::relig_income %>%
+  pivot_longer(!religion, 
+               names_to = "income", # diz a varável onde entrarão os nomes
+               values_to = "count" # diz a variável onde entrarão os valores
+               )
+```
+
+
+
+## `spread()`
+
+- `spread()` espalha uma variável nas colunas e preenche com outra variável
+
+- Função inversa de `gather`
+
+- Bem mais fácil com `pivot_wider`
+
+```{r}
+decisoes %>% 
+  filter(!is.na(id_decisao)) %>% 
+  select(id_decisao:data_registro) %>% 
+  gather(key, value, -id_decisao) %>% 
+  # 1. coluna a ser espalhada
+  # 2. valores da coluna
+  spread(key, value)
+```
+
+
+## `pivot_wider`
+
+
+
+```{r}
+decisoes %>% 
+  filter(!is.na(id_decisao)) %>% 
+  select(id_decisao:data_registro) %>% 
+  pivot_longer(!id_decisao, 
+               names_to = "tipo", # diz a varável onde entrarão os nomes
+               values_to = "info" # diz a variável onde entrarão os valores
+               ) %>% 
+  # 1. coluna a ser espalhada
+  # 2. valores da coluna
+  pivot_wider(names_from = "tipo",
+              values_from = "info")
+```
+
+
+## 
+
+- Qual juiz julga a maior proporção de processos que tratam de drogas
+
+ -- Dica: construa um `data.frame` contendo as colunas juiz, n_processos_drogas, n_processos_n_drogas e total_processos, remodelando os dados para haver um juiz por linha e utilizando `spread()`
+    
+## Resolução
+
+```{r,echo=F}
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>%
+  mutate(txt_decisao = tolower(txt_decisao),
+         droga = str_detect(txt_decisao,
+    "droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na"),
+    droga=case_when(
+      droga==TRUE ~ "droga",
+      droga==FALSE ~ "n_droga"
+    )) %>%
+  group_by(juiz,droga) %>%
+  summarise(n=n()) %>%
+  spread(droga,n,fill = 0) %>%
+  mutate(total=droga+n_droga,
+         proporcao=droga/total)
+  
+  
+```
+
+## Exercício
+
+- Qual quantidade mensal de decisões por juiz?
+
+- Dica: use `data_decisao` `dmy()` e `month()`
+    
+## Resolução
+
+```{r,eval=F}
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>%
+  mutate(txt_decisao = tolower(txt_decisao),
+         droga = str_detect(txt_decisao,
+    "droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na"),
+    droga=case_when(
+      droga==TRUE ~ "droga",
+      droga==FALSE ~ "n_droga"
+    )) %>%
+  group_by(juiz,droga) %>%
+  summarise(n=n()) %>%
+  spread(droga,n,fill = 0) %>%
+  mutate(total=droga+n_droga,
+         proporcao=droga/total)
+  
+  
+```
+
+
+## Resultado
+
+
+```{r,echo=F}
+decisoes %>% 
+  filter(!is.na(txt_decisao)) %>%
+  mutate(txt_decisao = tolower(txt_decisao),
+         droga = str_detect(txt_decisao,
+    "droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na"),
+    droga=case_when(
+      droga==TRUE ~ "droga",
+      droga==FALSE ~ "n_droga"
+    )) %>%
+  group_by(juiz,droga) %>%
+  summarise(n=n()) %>%
+  spread(droga,n,fill = 0) %>%
+  mutate(total=droga+n_droga,
+         proporcao=droga/total)
+  
+  
+```
+
+
+## Exemplo para o ggplot
+
+
+
+## Unindo e separando colunas
+
+- `unite` junta duas ou mais colunas usando algum separador (`_`, por exemplo).
+- `separate` faz o inverso de `unite`, e uma coluna em várias usando um separador.
+
+## Exemplo de separação de colunas
+
+- Olhe os valores da variável classe_assunto
+
+
+
+## Exemplo de separação de colunas
+
+- Vamos separar a coluna classe_assunto em duas colunas
+
+- coluna classe e coluna assunto
+
+- Existe separador? -> sim, `/`
+
+- Usei count apenas em assunto
+
+## Em ação
+```{r,eval=F}
+decisoes %>% 
+  select(n_processo, classe_assunto) %>% 
+  separate(classe_assunto, c('classe', 'assunto'), sep = ' / ', 
+           extra = 'merge', fill = 'right') %>% 
+  count(assunto, sort = TRUE)
+
+## count é um jeito resumido de usar group_by() %>% summarise(n())
+```
+
+## Em ação
+```{r,echo=F}
+decisoes %>% 
+  select(n_processo, classe_assunto) %>% 
+  separate(classe_assunto, c('classe', 'assunto'), sep = ' / ', 
+           extra = 'merge', fill = 'right') %>% 
+  count(assunto, sort = TRUE)
+
+
+```
+
+
+## List columns: `nest()` e `unnest()`
+
+`nest()` e `unnest()` são operações inversas e servem para tratar dados complexos, como o que temos em `processos`
+
+```{r}
+d_partes <- processos %>% 
+  select(n_processo, partes) %>% 
+  unnest(partes)
+```
+
+## 
+
+As list columns são uma forma condensada de guardar dados que estariam em múltiplas tabelas. Por exemplo, uma alternativa à colocar as `partes` numa list column seria guardar a tabela `d_partes` separadamente.
+
+```{r}
+
+glimpse(d_partes)
+```
+
+
+## Duplicatas
+
+Para retirar duplicatas, utilizar `distinct`. Ele considera apenas a primeira linha em que encontra um padrão para as combinações de variáveis escolhidas e descarta as demais.
+
+```{r echo=TRUE}
+decisoes %>% 
+  distinct(municipio)
+```
+
+## Por coluna
+
+Para manter as demais colunas, use `.keep_all=`:
+
+```{r echo=TRUE}
+decisoes %>%
+  distinct(municipio, camara, 
+           .keep_all = TRUE)
+```
+
+## `janitor::get_dupes()`
+
+Use `janitor::get_dupes()` para averiguar os casos em que há repetição de combinações de colunas.
+
+```{r echo=TRUE}
+decisoes %>% 
+  get_dupes(n_processo)
+```
+
+
+
+
+# Joins
+
+## Dados relacionais
+
+- Hadley Wickham <http://r4ds.had.co.nz/relational-data.html>
+
+## Principais funções 
+
+Para juntar tabelas, usar `inner_join`, `left_join`, `anti_join`, etc. 
+
+## Visualizando
+
+```{r, out.width="90%", echo=FALSE, fig.align='center',eval=F}
+knitr::include_graphics("imgs/join-venn.png")
+```
+
+
+
+## Exemplo de inner join:
+
+```{r eval=F}
+decisoes %>% 
+  filter(data_registro == "18/01/2018", !is.na(id_decisao)) %>% 
+  select(id_decisao, n_processo) %>% 
+  inner_join(processos, "n_processo")
+```
+
+##
+```{r echo=F}
+decisoes %>% 
+  filter(data_registro == "18/01/2018", !is.na(id_decisao)) %>% 
+  select(id_decisao, n_processo) %>% 
+  inner_join(processos, "n_processo")
+```
+
+
+
+## Exemplo de right join:
+
+
+```{r eval=F}
+decisoes %>% 
+  filter(data_registro == "18/01/2018", !is.na(id_decisao)) %>% 
+  select(id_decisao, n_processo) %>% 
+  right_join(processos, "n_processo")
+```
+
+##
+
+```{r echo=F}
+decisoes %>% 
+  filter(data_registro == "18/01/2018", !is.na(id_decisao)) %>% 
+  select(id_decisao, n_processo) %>% 
+  right_join(processos, "n_processo")
+```
+
+
+# Limpeza
+
+## Duplicatas
+
+Para retirar duplicatas, utilizar `distinct`. Ele considera apenas a primeira linha em que encontra um padrão para as combinações de variáveis escolhidas e descarta as demais.
+
+```{r eval=F}
+decisoes %>% 
+  distinct(municipio)
+```
+
+##
+
+```{r echo=F}
+decisoes %>% 
+  distinct(municipio)
+```
+
+
+
+## Por coluna
+
+Para manter as demais colunas, use `.keep_all=`:
+
+```{r eval=F}
+decisoes %>%
+  distinct(municipio, camara, 
+           .keep_all = TRUE)
+```
+
+##
+
+```{r echo=F}
+decisoes %>%
+  distinct(municipio, camara, 
+           .keep_all = TRUE)
+```
+
+
+
+## `janitor::get_dupes()`
+
+Use `janitor::get_dupes()` para averiguar os casos em que há repetição de combinações de colunas.
+
+```{r eval=F}
+decisoes %>% 
+  get_dupes(n_processo)
+```
+
+
+##
+
+```{r echo=F}
+decisoes %>% 
+  get_dupes(n_processo)
+```
+
+## 
+
+- Janitor exemplos <http://sfirke.github.io/janitor/articles/janitor.html>
+
+- Missing e imputação <https://www.analyticsvidhya.com/blog/2016/03/tutorial-powerful-packages-imputing-missing-values/>
+
+- Outliers (critérios, limpeza e gráficos)
+
+- `stringi` e `stringr`
+
+
+

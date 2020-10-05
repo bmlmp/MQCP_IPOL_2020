@@ -1,0 +1,2822 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usetheme[]{Berkeley}
+\usecolortheme{dove}
+\usefonttheme{structurebold}
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Estruturas de dados e manipulação avançada},
+  pdfauthor={Frederico Bertholini},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\newif\ifbibliography
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\title{Estruturas de dados e manipulação avançada}
+\subtitle{Métodos Quantitativos Aplicados à Ciência Política}
+\author{Frederico Bertholini}
+\date{28.set.2020}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}[allowframebreaks]
+  \tableofcontents[hideallsubsections]
+\end{frame}
+\hypertarget{data.frame}{%
+\section{data.frame}\label{data.frame}}
+
+\begin{frame}{data.frame}
+\protect\hypertarget{data.frame-1}{}
+\begin{itemize}
+\item
+  Um data.frame é o mesmo que uma tabela do SQL ou uma planilha Excel
+\item
+  seus dados provavelmente serão importados para um objeto data.frame
+\item
+  data.frame's são listas especiais em que todos os elementos possuem o
+  mesmo comprimento.
+\item
+  Cada elemento dessa lista pode ser pensado como uma coluna da tabela -
+  ou como uma variável. Uso do `\$'
+\item
+  Seu comprimento representa o número de linhas - ou seja, de
+  observações
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{data.frame}
+\protect\hypertarget{data.frame-2}{}
+\begin{itemize}
+\tightlist
+\item
+  Como data.frames's são listas, suas colunas podem ser de classes
+  diferentes. Essa é a grande diferença entre data.frame's e matrizes.
+\end{itemize}
+
+Funções úteis:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{() }\CommentTok{\# Mostra as primeiras 6 linhas.}
+\KeywordTok{tail}\NormalTok{() }\CommentTok{\# Mostra as últimas 6 linhas.}
+\KeywordTok{dim}\NormalTok{() }\CommentTok{\# Número de linhas e de colunas.}
+\KeywordTok{names}\NormalTok{() }\CommentTok{\# Os nomes das colunas (variáveis).}
+\KeywordTok{str}\NormalTok{() }\CommentTok{\# Estrutura do data.frame. Mostra, entre outras coisas, as \textgreater{}classes de cada coluna.}
+\KeywordTok{cbind}\NormalTok{() }\CommentTok{\# Acopla duas tabelas lado a lado.}
+\KeywordTok{rbind}\NormalTok{() }\CommentTok{\# Empilha duas tabelas.}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\hypertarget{pacotes}{%
+\section{Pacotes}\label{pacotes}}
+
+\begin{frame}{O que são pacotes}
+\protect\hypertarget{o-que-suxe3o-pacotes}{}
+\begin{itemize}
+\tightlist
+\item
+  O R possui diversas funções já instaladas dentro da sua programação
+\item
+  Exemplos são sum(), length(), class(), c()
+\item
+  Outras, porém, devem ser instaladas para que possam ser utilizadas
+  pelos usuários
+\item
+  A maneira com a qual instalamos novas funções, não definidas
+  anteriormente no software, é através de pacotes
+\item
+  Pacotes concentram diversas funções para diversas demandas\\
+  Importação de dados;\\
+  Organização de banco de dados;\\
+  Análises estatísticas específicas;\\
+  Gráficos diferenciados;
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{O que são pacotes}
+\protect\hypertarget{o-que-suxe3o-pacotes-1}{}
+\begin{itemize}
+\tightlist
+\item
+  A instalação de qualquer pacote pode ser feita por dentro do R
+\item
+  Para isso, porém, é preciso primeiro conexão com a internet, já que o
+  R busca o novo pacote no repositório de pacotes
+\item
+  A função para instalar pacote, portanto, é install.packages()
+\item
+  O nome da nova função deve vir, primeiramente entre parenteses
+\item
+  Podemos começar instalando o pacote para importação de bases de dados:
+  foreign
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"foreign"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Após alguns segundos, e algumas mensagens no console, a instalação
+  será efetivada
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ativar pacotes}
+\protect\hypertarget{ativar-pacotes}{}
+\begin{itemize}
+\tightlist
+\item
+  Cada pacote, inclusive o foreign, tem uma documentação disponível na
+  internet
+\item
+  Nessa documentação estão disponíveis as funções que o pacote possui,
+  além do nome do seu criador
+\item
+  As função não ficam disponíveis assim que o pacote termina a
+  instalação
+\item
+  Para ativar as funções do pacote, é preciso utilizar a função
+  library()
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(foreign)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Repare, que uma vez instalado, o nome do pacote não precisa mais estar
+  entre aspas
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Ativar pacotes}
+\protect\hypertarget{ativar-pacotes-1}{}
+\begin{itemize}
+\tightlist
+\item
+  Portanto, para começarmos o procedimento de instalação do pacote,
+  seguimos os passos a seguir:\\
+  Caso não esteja instalado, instalar o pacote através da função
+  install.packages();\\
+  Para ativar o pacote, utilizar a função library() sem as aspas no nome
+  do pacote instalado
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"foreign"}\NormalTok{)}
+
+\KeywordTok{library}\NormalTok{(foreign)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Uma vez instalado o pacote, não é preciso instalar mais a não ser que
+  você reinstale o R
+\end{itemize}
+\end{frame}
+
+\hypertarget{importauxe7uxe3o-de-dados}{%
+\section{Importação de dados}\label{importauxe7uxe3o-de-dados}}
+
+\begin{frame}[fragile]{Passo a passo}
+\protect\hypertarget{passo-a-passo}{}
+\begin{itemize}
+\tightlist
+\item
+  A importação é uma das tarefas que demandam mais atenção no R
+\item
+  É preciso ter um conhecimento prévio de como sua base externa está
+  constituída
+\item
+  Outra informação importante é a extensão do arquivo da base
+\item
+  Primeiramente, a informação que deve ser dada ao software é onde está
+  a base - diretório de trabalho
+\item
+  A função necessária é setwd() que define o diretório da sua seção no R
+\item
+  Dentro da função, iremos inserir o local do arquivo\\
+  Em caso de Windows, inverta as barras ou duplique;\\
+  Não se esqueça das aspas;
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"/Volumes/Macintosh HD/MQCP\_IPOL\_2020/Slides/aula 03"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Passo a passo}
+\protect\hypertarget{passo-a-passo-1}{}
+\begin{itemize}
+\tightlist
+\item
+  Esse diretório definido significa que as bases e os gráficos
+  produzidos serão enviados para essa pasta
+\item
+  Finalmente, vamos importar as bases de dados
+\item
+  Primeiro, vamos importar a base de extensão txt com o nome baserm
+\item
+  Não é preciso de pacote para esse procedimento
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lines \textless{}{-}}\StringTok{ }\KeywordTok{readLines}\NormalTok{(}\StringTok{"dados/baserm.txt"}\NormalTok{)}
+
+\NormalTok{baserm \textless{}{-}}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\DataTypeTok{text =}\NormalTok{ lines, }\DataTypeTok{sep =} \StringTok{\textquotesingle{}}\CharTok{\textbackslash{}t}\StringTok{\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Repare que definimos a base dentro das aspas e com a extensão
+\item
+  Na segunda linha, o primeiro argumento é o texto, o segundo argumento
+  trata de como os dados estão separados, geralmente txt vem separado
+  assim
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Passo a passo}
+\protect\hypertarget{passo-a-passo-2}{}
+\begin{itemize}
+\tightlist
+\item
+  No pacote foreign, a forma mais genérica de importação da base é o
+  read.table()
+\item
+  Entretanto, o pacote apresenta uma série de especialidades, a depender
+  da extensão em questão
+\item
+  Para CSV, vimos que tem a read.csv(). Já para dta, base de origem do
+  stata, temos a função read.dta()
+\item
+  O pacote foreign não possui a extensão xlsx e xls, extensão muito
+  encontrada e comum entre as bases de dados disponíveis
+\item
+  Para isso, vamos instalar um novo pacote readxl
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Esse pacote disponibiliza as funções read\_xls() e read\_xlsx()
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Passo a passo}
+\protect\hypertarget{passo-a-passo-3}{}
+\begin{itemize}
+\tightlist
+\item
+  Vamos ativar as funções disponíveis no pacote readxl com a função
+  library()
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Vamos importar a base controle\_cgu\_municípios.xlsx
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cgu \textless{}{-}}\StringTok{ }
+\KeywordTok{read\_xlsx}\NormalTok{(}\StringTok{"dados/controle\_cgu\_municípios.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Repare que acessamos apenas a primeira página da base
+\item
+  Para acessarmos a segunda páginas, utilizamos o argumento sheet=2
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cgu \textless{}{-}}\StringTok{ }
+\KeywordTok{read\_xlsx}\NormalTok{(}\StringTok{"dados/controle\_cgu\_municípios.xlsx"}\NormalTok{, }
+\DataTypeTok{sheet =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Alguns sinais de alerta surgem, porém não se trata de erro
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Importação por pacote}
+\protect\hypertarget{importauxe7uxe3o-por-pacote}{}
+\begin{itemize}
+\tightlist
+\item
+  Por fim, podemos importar dados através de pacotes
+\item
+  Após ativar o pacote ``ElectionsBR'', a função legend\_fed() fica
+  disponível para a importação
+\item
+  Como toda a função, ou quase todas, possui argumentos importantes:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    `year =' se refere ao ano de extração
+  \item
+    `uf =' se refere à UF
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Importação}
+\protect\hypertarget{importauxe7uxe3o}{}
+\begin{itemize}
+\tightlist
+\item
+  Vamos começar importando dados de coalizões pré-eleitorais
+  (coligações) do DF em 2018, nos retornando um objeto em `tbl\_df' e
+  data frame
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(electionsBR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## To cite electionsBR in publications, use: citation('electionsBR')
+\end{verbatim}
+
+\begin{verbatim}
+## To learn more, visit: http://electionsbr.com
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{leg\_df\_}\DecValTok{2018}\NormalTok{ \textless{}{-}}\StringTok{ }\KeywordTok{legend\_fed}\NormalTok{(}\DataTypeTok{year =} \DecValTok{2018}\NormalTok{,}\DataTypeTok{uf=}\StringTok{"DF"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Processing the data...
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: `as.tbl()` is deprecated as of dplyr 1.0.0.
+## Please use `tibble::as_tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.
+\end{verbatim}
+
+\begin{verbatim}
+## Done.
+\end{verbatim}
+
+\begin{verbatim}
+  - Provavelmente, demorará alguns segundos, até minutos, para a importação
+  - Além disso, essa técnica demanda acesso à internet
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizando a base}
+\protect\hypertarget{visualizando-a-base}{}
+\begin{itemize}
+\tightlist
+\item
+  Primeira coisa importante de se informar é a classe desses objetos
+\item
+  Temos 4 objetos: baserm, cgu, educacao e pnad2018
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(baserm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(cgu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "tbl_df"     "tbl"        "data.frame"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(leg\_df\_}\DecValTok{2018}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "tbl_df"     "tbl"        "data.frame"
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizando a base}
+\protect\hypertarget{visualizando-a-base-1}{}
+\begin{itemize}
+\tightlist
+\item
+  Uma visão completa da base é o comando View()
+\item
+  Entretanto, cuidado, dependendo do tamanho da base, podemos travar o
+  software
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{View}\NormalTok{(baserm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Repare no V maiúsculo, lembre-se que o R é bastante sensível na sua
+  linguagem
+\item
+  O View() abre uma nova aba com a base no formato de grade
+\item
+  Podemos, assim, visualizar a base de dados na forma mais intuitiva
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizando a base}
+\protect\hypertarget{visualizando-a-base-2}{}
+\begin{itemize}
+\tightlist
+\item
+  Porém, para bases como a pnad2018, por exemplo, sabemos que é grande
+  demais para sua visualização ser feita através do View()
+\item
+  Algumas funções podem nos ajudar nessa tarefa
+\item
+  A primeira é o dim, que as dimensões da base
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(leg\_df\_}\DecValTok{2018}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 251  23
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  O primeiro valor sempre retrata o número de linhas, ou observações,
+  enquanto o segundo valor apresenta o número de colunas, ou variáveis
+\item
+  A função ncol() e length() também indicam quantas colunas, ou
+  variáveis estão presentes na base
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizando a base}
+\protect\hypertarget{visualizando-a-base-3}{}
+\begin{itemize}
+\tightlist
+\item
+  Outra função importante na visualização de bases de dados é a lista de
+  nomes
+\item
+  A função names() descreve as variáveis presentes na base
+\item
+  Isso facilita no momento de selecionar as variáveis que entrarão na
+  análise de vocês
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(cgu)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "COD.IBGE7"               "REGIÃO"                 
+##  [3] "UF"                      "PORTE"                  
+##  [5] "MUNICÍPIO"               "falha"                  
+##  [7] "tempo_falha_02"          "tempo_falha_01"         
+##  [9] "reicidência_falha"       "ano_eleitoral"          
+## [11] "PERCENT_ganhador_2000"   "PERCENT_ganhador_2004"  
+## [13] "PERCENT_ganhador_2008"   "PERCENT_ganhador_2012"  
+## [15] "PERCENT_ganhador_médio"  "competição_pol_alta"    
+## [17] "Ideologia1"              "Ideologia2"             
+## [19] "Ideologia3"              "ideologia 4"            
+## [21] "ideologia_media"         "IDHM_2000"              
+## [23] "IDHM_2010"               "IDHM_media"             
+## [25] "tm 2000"                 "tm 2004"                
+## [27] "tm 2008"                 "tm2012"                 
+## [29] "tamanho setor media"     "NEP1"                   
+## [31] "NEP2"                    "NEP3"                   
+## [33] "NEP4"                    "NEP_medio"              
+## [35] "Pibpercapita2000"        "Pibpercapita2004"       
+## [37] "Pibpercapita2008"        "Pibpercapita2012"       
+## [39] "Pibpercapita_medio"      "TaxadeUrbanização2000"  
+## [41] "TaxadeUrbanização2004"   "TaxadeUrbanização2008"  
+## [43] "TaxadeUrbanização_media" "Arrec_Prop2000"         
+## [45] "Arrec_Prop2004"          "Arrec_Prop2008"         
+## [47] "Arrec_Prop2012"          "Arrec_Prop_media"       
+## [49] "POP"                     "LN_POP"                 
+## [51] "N_NE"                    "Viznho"                 
+## [53] "sul"                     "centro_Oeste"           
+## [55] "Sudeste"                 "Nordeste"
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizando a base}
+\protect\hypertarget{visualizando-a-base-4}{}
+\begin{itemize}
+\tightlist
+\item
+  Outra função possível é o str()
+\item
+  Essa função apresenta o nome das variáveis, a classe de cada uma delas
+  e os primeiros valores
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(leg\_df\_}\DecValTok{2018}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tibble [251 x 23] (S3: tbl_df/tbl/data.frame)
+##  $ DATA_GERACAO        : chr [1:251] "23/09/2020" "23/09/2020" "23/09/2020" "23/09/2020" ...
+##  $ HORA_GERACAO        : 'hms' num [1:251] 17:31:43 17:31:43 17:31:43 17:31:43 ...
+##   ..- attr(*, "units")= chr "secs"
+##  $ ANO_ELEICAO         : num [1:251] 2018 2018 2018 2018 2018 ...
+##  $ COD_TIPO_ELEICAO    : num [1:251] 2 2 2 2 2 2 2 2 2 2 ...
+##  $ NM_TIPO_ELEICAO     : chr [1:251] "ELEIÇÃO ORDINÁRIA" "ELEIÇÃO ORDINÁRIA" "ELEIÇÃO ORDINÁRIA" "ELEIÇÃO ORDINÁRIA" ...
+##  $ NUM_TURNO           : num [1:251] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ COD_ELEICAO         : num [1:251] 297 297 297 297 297 297 297 297 297 297 ...
+##  $ DESCRICAO_ELEICAO   : chr [1:251] "Eleições Gerais Estaduais 2018" "Eleições Gerais Estaduais 2018" "Eleições Gerais Estaduais 2018" "Eleições Gerais Estaduais 2018" ...
+##  $ DATA_ELEICAO        : chr [1:251] "07/10/2018" "07/10/2018" "07/10/2018" "07/10/2018" ...
+##  $ SIGLA_UF            : chr [1:251] "DF" "DF" "DF" "DF" ...
+##  $ SIGLA_UE            : chr [1:251] "DF" "DF" "DF" "DF" ...
+##  $ NOME_MUNICIPIO      : chr [1:251] "DISTRITO FEDERAL" "DISTRITO FEDERAL" "DISTRITO FEDERAL" "DISTRITO FEDERAL" ...
+##  $ CODIGO_CARGO        : num [1:251] 4 6 5 6 9 8 5 4 3 9 ...
+##  $ DESCRICAO_CARGO     : chr [1:251] "VICE-GOVERNADOR" "DEPUTADO FEDERAL" "SENADOR" "DEPUTADO FEDERAL" ...
+##  $ TIPO_LEGENDA        : chr [1:251] "COLIGACAO" "COLIGACAO" "COLIGACAO" "COLIGACAO" ...
+##  $ NUMERO_PARTIDO      : num [1:251] 12 35 18 20 22 65 12 29 21 17 ...
+##  $ SIGLA_PARTIDO       : chr [1:251] "PDT" "PMB" "REDE" "PSC" ...
+##  $ NOME_PARTIDO        : chr [1:251] "PARTIDO DEMOCRÁTICO TRABALHISTA" "PARTIDO DA MULHER BRASILEIRA" "REDE SUSTENTABILIDADE" "PARTIDO SOCIAL CRISTÃO" ...
+##  $ SEQUENCIAL_COLIGACAO: num [1:251] 7e+10 7e+10 7e+10 7e+10 7e+10 ...
+##  $ NOME_COLIGACAO      : chr [1:251] "Brasília de Mãos Limpas" "RENOVAR DF 2" "Brasília de Mãos Limpas" "UNIDOS PELO DF 1" ...
+##  $ COMPOSICAO_COLIGACAO: chr [1:251] "PSB / PV / PC do B / PDT / REDE" "PROS / PMB / PMN" "PSB / PV / PC do B / PDT / REDE" "PRB / PODE / PPS / SOLIDARIEDADE / PSC / PSD" ...
+##  $ NA                  : chr [1:251] "D" "D" "D" "D" ...
+##  $ NA                  : chr [1:251] "DEFERIDO" "DEFERIDO" "DEFERIDO" "DEFERIDO" ...
+##  - attr(*, ".internal.selfref")=<externalptr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Visualizando a base}
+\protect\hypertarget{visualizando-a-base-5}{}
+\begin{itemize}
+\tightlist
+\item
+  Finalmente, a função head() e tail()
+\item
+  A primeira função apresenta os primeiros valores de uma base de dados
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(baserm,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   sigla cod.ibge  estado anoeleitoral1990 anoeleitoral1991 anoeleitoral1992
+## 1    AC       12    Acre                1                0                0
+## 2    AL       27 Alagoas                1                0                0
+##   anoeleitoral1993 anoeleitoral1994 anoeleitoral1995 anoeleitoral1996
+## 1                0                1                0                0
+## 2                0                1                0                0
+##   anoeleitoral1997 anoeleitoral1998 anoeleitoral1999 anoeleitoral2000
+## 1                0                1                0                0
+## 2                0                1                0                0
+##   anoeleitoral2001 anoeleitoral2002 anoeleitoral2003 anoeleitoral2004
+## 1                0                1                0                0
+## 2                0                1                0                0
+##   anoeleitoral2005 anoeleitoral2006 anoeleitoral2007 anoeleitoral2008
+## 1                0                1                0                0
+## 2                0                1                0                0
+##   anoeleitoral2009 anoeleitoral2010 anoeleitoral2011 anoeleitoral2012
+## 1                0                1                0                0
+## 2                0                1                0                0
+##   anoeleitoral2013 anoeleitoral2014 anoeleitoral2015 anoeleitoral2016
+## 1                0                1                0                0
+## 2                0                1                0                0
+##   anoeleitoral2017 vitoria1990.1 vitoria1994.1 vitoria1998.1 vitoria2002.1
+## 1                0         28.64         46.80         57.70         46.81
+## 2                0         49.76         79.39         58.09         52.93
+##   vitoria2006.1 vitoria2010.1 vitoria2014.1 vitoria2017.1 derrota1990.1
+## 1         53.05         50.51         49.73            NA         28.34
+## 2         55.85         39.58         52.16            NA         44.65
+##   derrota1994.1 derrota1998.1 derrota2002.1 derrota2006.1 derrota2010.1
+## 1         27.30         26.30         33.64         35.12         49.18
+## 2          9.97         38.95         40.17         30.51         29.16
+##   derrota2014.1 derrota2017.1 marge1990 marge1994 marge1998 marge2002 marge2006
+## 1         30.10            NA      0.30     19.50     31.40     13.17     17.93
+## 2         33.92            NA      5.11     69.42     19.14     12.76     25.34
+##   marge2010 marge2014 marge2017 vitoria1990.2 vitoria1994.2 vitoria1998.2
+## 1      1.33     19.63        NA         54.61         53.66            NA
+## 2     10.42     18.24        NA         65.97            NA            NA
+##   vitoria2002.2 vitoria2006.2 vitoria2010.2 vitoria2014.2 vitoria2017.2
+## 1            NA            NA            NA         51.29            NA
+## 2            NA            NA         52.74            NA            NA
+##   derrota1990.2 derrota1994.2 derrota1998.2 derrota2002.2 derrota2006.2
+## 1         45.39         46.34            NA            NA            NA
+## 2         34.03            NA            NA            NA            NA
+##   derrota2010.2 derrota2014.2 derrota2017.2 segunt.1990 segunt.1994 segunt.1998
+## 1            NA         48.71            NA           1           1           0
+## 2         47.26            NA            NA           1           0           0
+##   segunt.2002 segunt.2006 segunt.2010 segunt.2014 segunt.2017
+## 1           0           0           0           1           0
+## 2           0           0           1           0           0
+##                        colig.venc1990             colig.venc1994
+## 1                         PDS/PFL/PRN                 PPR/PP/PFL
+## 2 PSC/PMDB/PFL/PSDB/PDT/PTB/PMN/PTdoB PMDB/PTB/PSDB/PL/PSD/PCdoB
+##                                            colig.venc1998
+## 1       PT/PSDB/PCdoB/PDT/PSB/PPS/PV/PMN/PTB/PL/PSL/PTdoB
+## 2 PSB/PT/PDT/PCdoB/PPS/PTdoB/PRONA/PRP/PV/PTN/PSN/PMN/PST
+##                          colig.venc2002              colig.venc2006
+## 1         PT/PL/PCdoB/PV/PMN/PSDC/PTdoB PT/PP/PL/PSB/PCdoB/PMN/PRTB
+## 2 PSB/PST/PAN/PHS/PSC/PTC/PSDC/PV/PRONA         PSDB/PMDB/PPS/PTdoB
+##                                                    colig.venc2010
+## 1 PT/PP/PRB/PDT/PTN/PR/PSDC/PHS/PTC/PSB/PV/PRP/PCB/PTB/PSTU/PCdoB
+## 2                                         PP/PSC/PPS/DEM/PSB/PSDB
+##                                                   colig.venc2014 colig.venc2017
+## 1 PT/PDT/PCdoB/PSB/PTB/PCB/PSL/PRB/PSDC/PTN/PPL/PROS/PRP/PHS/PEN           <NA>
+## 2                PMDB/PT/PDT/PTB/PCdoB/PSD/PSC/PROS/PV/PTdoB/PHS           <NA>
+##   cent.venc1990 cent.venc1994 cent.venc1998 cent.venc2002 cent.venc2006
+## 1           PDS           PPR            PT            PT            PT
+## 2           PSC          PMDB           PSB           PSB          PSDB
+##   cent.venc2010 cent.venc2014 cent.venc2017         colig.derr1990
+## 1            PT            PT          <NA>       PT/PDT/PCB/PCdoB
+## 2          PSDB          PMDB          <NA> PRN/PDC/PL/PTR/PST/PRP
+##           colig.derr1994        colig.derr1998        colig.derr2002
+## 1          PMDB/PSDB/PDT               PFL/PPB PMDB/PSDB/PFL/PPB/PST
+## 2 PP/PPR/PFL/PSC/PRN/PMN PTB/PSDB/PFL/PGT/PMDB  PRTB/PTB/PPS/PPB/PFL
+##         colig.derr2006                      colig.derr2010
+## 1 PPS/PMDB/PDT/PTC/PHS PSDB/PMDB/DEM/PSL/PSC/PPS/PMN/PTdoB
+## 2    PTB/PMN/PFL/PV/PP PDT/PT/PMDB/PR/PSDC/PRP/PCdoB/PTdoB
+##                             colig.derr2014 colig.derr2017 cent.derr1990
+## 1 PSDB/PMDB/PP/PSC/PSD/PR/PPS/PTdoB/SD/PTC           <NA>            PT
+## 2        PP/PSB/DEM/PR/PPS/SD/PSL/PSDC/PRP           <NA>           PRN
+##   cent.derr1994 cent.derr1998 cent.derr2002 cent.derr2006 cent.derr2010
+## 1          PMDB           PFL          PMDB           PPS          PSDB
+## 2            PP           PTB          PRTB           PTB           PDT
+##   cent.derr2014 cent.derr2017      pib1990      pib1991      pib1992
+## 1          PSDB          <NA> 8,5046506371 8,7232716989 8,5758084005
+## 2            PP          <NA> 6,1245303676 6,1700559571 6,3226355082
+##        pib1993      pib1994      pib1995      pib1996      pib1997      pib1998
+## 1 8,5919435813 8,4737417079 8,5777487009 8,5137013716 8,2219297645 8,3880379051
+## 2 6,0055725931  6,362685085  6,181753266 6,1250000647 6,3801014987  6,447201319
+##        pib1999      pib2000      pib2001      pib2002      pib2003      pib2004
+## 1  8,304872692 8,4004032965 8,4772487716 8,6074182777 8,7019837683 9,2998229259
+## 2 6,2677884172 6,3133529976 6,3528049829 6,2872324787  6,178023009 6,3815555297
+##        pib2005      pib2006       pib2007       pib2008       pib2009
+## 1  9,396913016 9,6611772592 10,7836698517 11,1098707418 11,0597301472
+## 2 6,6081828111 6,8190719202  7,1293278871  7,2077456254  7,2927619283
+##         pib2010       pib2011 presidente_ass1990 presidente_ass1994
+## 1 11,5674100019 11,0150052537                PDS                PPB
+## 2  7,8742100008  8,4879911718               <NA>               <NA>
+##   presidente_ass1998 presidente_ass2002 presidente_ass2006 presidente_ass2010
+## 1                PPB                PMN                PPR                PEN
+## 2               <NA>               <NA>               <NA>               <NA>
+##   presidente_ass2014 alinhamento1990 alinhamento1994 alinhamento1998
+## 1                 PT               1               0               0
+## 2               PMDB              NA              NA              NA
+##   alinhamento2002 alinhamento2006 alinhamento2010 alinhamento2014  nep1994
+## 1               0               0               0               1 2.027088
+## 2              NA              NA              NA               1 4.300454
+##         tampub1990       tampub1991       tampub1992       tampub1993
+## 1 611411,513586656  536496,02078722 608472,003975918 628730,202973373
+## 2 1313572,46142367 1194027,27279608 1028453,06094235 1347342,39625056
+##         tampub1994       tampub1995       tampub1996       tampub1997
+## 1 759921,483162687 702943,384175584 641316,605942853  732135,48830176
+## 2 1312023,68646294 1383956,67383895 1801731,17072279 1759142,06212779
+##         tampub1998       tampub1999       tampub2000       tampub2001
+## 1 791582,505357824 769742,256433218 709631,314458073 696843,832285717
+## 2 1828943,13052009 1775942,55060186 1773535,41143224 1794722,67176703
+##         tampub2002       tampub2003       tampub2004       tampub2005
+## 1 792129,607169136 790293,863518309 812197,028281624 865132,591797147
+## 2 1784143,23672935 1759563,77863612 1795456,15261078 1912450,83760713
+##         tampub2006       tampub2007       tampub2008       tampub2009
+## 1 932586,565877418 1014670,56483533 1070900,44301039  1100656,5650149
+## 2 2075462,54896424 2262606,57966598 2454839,30043114 2559887,84486059
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  O segundo argumento serve para indicar quantas linhas serão
+  apresentadas
+\item
+  Tail(), por outro lado, apresenta os últimos valores de uma base de
+  dados
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{tail}\NormalTok{(baserm,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    sigla cod.ibge         estado anoeleitoral1990 anoeleitoral1991
+## 24    SC       42 Santa Catarina                1                0
+## 25    SE       28        Sergipe                1                0
+## 26    SP       35   S<e3>o Paulo                1                0
+## 27    TO       17      Tocantins                1                0
+##    anoeleitoral1992 anoeleitoral1993 anoeleitoral1994 anoeleitoral1995
+## 24                0                0                1                0
+## 25                0                0                1                0
+## 26                0                0                1                0
+## 27                0                0                1                0
+##    anoeleitoral1996 anoeleitoral1997 anoeleitoral1998 anoeleitoral1999
+## 24                0                0                1                0
+## 25                0                0                1                0
+## 26                0                0                1                0
+## 27                0                0                1                0
+##    anoeleitoral2000 anoeleitoral2001 anoeleitoral2002 anoeleitoral2003
+## 24                0                0                1                0
+## 25                0                0                1                0
+## 26                0                0                1                0
+## 27                0                0                1                0
+##    anoeleitoral2004 anoeleitoral2005 anoeleitoral2006 anoeleitoral2007
+## 24                0                0                1                0
+## 25                0                0                1                0
+## 26                0                0                1                0
+## 27                0                0                1                0
+##    anoeleitoral2008 anoeleitoral2009 anoeleitoral2010 anoeleitoral2011
+## 24                0                0                1                0
+## 25                0                0                1                0
+## 26                0                0                1                0
+## 27                0                0                1                0
+##    anoeleitoral2012 anoeleitoral2013 anoeleitoral2014 anoeleitoral2015
+## 24                0                0                1                0
+## 25                0                0                1                0
+## 26                0                0                1                0
+## 27                0                0                1                0
+##    anoeleitoral2016 anoeleitoral2017 vitoria1990.1 vitoria1994.1 vitoria1998.1
+## 24                0                0         50.42         45.86         58.92
+## 25                0                0         73.74         47.61         40.17
+## 26                0                0         43.50         46.84         32.21
+## 27                0                0         49.12         58.73         61.65
+##    vitoria2002.1 vitoria2006.1 vitoria2010.1 vitoria2014.1 vitoria2017.1
+## 24         39.86         48.90         52.71         51.36            NA
+## 25         43.63         52.46         52.08         53.52            NA
+## 26         38.28         57.93         50.63         57.31            NA
+## 27         60.60         51.49         50.52         51.30            NA
+##    derrota1990.1 derrota1994.1 derrota1998.1 derrota2002.1 derrota2006.1
+## 24         30.07         34.00         23.12         30.07         32.77
+## 25         25.07         47.40         38.70         28.43         45.02
+## 26         28.17         22.23         22.95         32.45         31.68
+## 27         37.33         36.57         33.17         33.74         46.84
+##    derrota2010.1 derrota2014.1 derrota2017.1 marge1990 marge1994 marge1998
+## 24         24.91         29.90            NA     20.35     11.86     35.80
+## 25         45.19         41.37            NA     48.67      0.21      1.47
+## 26         35.23         21.53            NA     15.33     24.61      9.26
+## 27         49.48         44.72            NA     11.79     22.16     28.48
+##    marge2002 marge2006 marge2010 marge2014 marge2017 vitoria1990.2
+## 24      9.79     16.13     27.80     21.46        NA            NA
+## 25     15.20      7.44      6.89     12.15        NA            NA
+## 26      5.83     26.25     15.40     35.78        NA         51.77
+## 27     26.86      4.65      1.04      6.58        NA         55.94
+##    vitoria1994.2 vitoria1998.2 vitoria2002.2 vitoria2006.2 vitoria2010.2
+## 24         50.80            NA         50.34         52.71            NA
+## 25         51.68         54.39         55.00            NA            NA
+## 26         56.12         55.37         58.64            NA            NA
+## 27            NA            NA            NA            NA            NA
+##    vitoria2014.2 vitoria2017.2 derrota1990.2 derrota1994.2 derrota1998.2
+## 24            NA            NA            NA         49.20            NA
+## 25            NA            NA            NA         48.32         45.61
+## 26            NA            NA         48.23         43.88         44.63
+## 27            NA            NA         44.06            NA            NA
+##    derrota2002.2 derrota2006.2 derrota2010.2 derrota2014.2 derrota2017.2
+## 24         49.66         47.29            NA            NA            NA
+## 25         45.00            NA            NA            NA            NA
+## 26         41.36            NA            NA            NA            NA
+## 27            NA            NA            NA            NA            NA
+##    segunt.1990 segunt.1994 segunt.1998 segunt.2002 segunt.2006 segunt.2010
+## 24           0           1           0           1           1           0
+## 25           0           1           1           1           0           0
+## 26           1           1           1           1           0           0
+## 27           1           0           0           0           0           0
+##    segunt.2014 segunt.2017                       colig.venc1990
+## 24           0           0              PFL/PDS /PDC/PTB/PL/PSC
+## 25           0           0 PFL/PMDB/PDS/PSDB/PRN/PL/PDC/PCN/PST
+## 26           0           0                      PMDB/PFL/PL/PSD
+## 27           0           0              PMDB/PDT/PSDB/PRN/PCdoB
+##                                    colig.venc1994
+## 24  PMDB/PTRB/PMN/PSD/PV/PRP/PCdoB/PDT/PPS/PT/PSB
+## 25 PSDB/PFL/PMDB/PPR/PTB/PPS/PL/PSD/PSC/PRP/PTdoB
+## 26                                       PSDB/PFL
+## 27                          PPR/PFL/PP/PTB/PV/PMN
+##                                                        colig.venc1998
+## 24            PPB/PFL/PSDB/PTB/PL/PRN/PTdoB/PGT/PRTB/PSDC/PSL/PST/PAN
+## 25                                    PSDB/PMDB/PPB/PL/PSC/PPS/PV/PMN
+## 26                                                       PSDB/PTB/PSD
+## 27 PFL/PPB/PSDB/PTB/PSC/PL/PDT/PSB/PV/PRP/PST/PTN/PSDC/PGT/PRTB/PTdoB
+##                                       colig.venc2002
+## 24                                         PMDB/PSDB
+## 25                 PFL/PPB/PPS/PDT/PSD/PST/PHS/PTdoB
+## 26                                      PSDB/PFL/PSD
+## 27 PFL/PPB/PSDB/PSD/PSL/PST/PAN/PRTB/PRP/PRONA/PTdoB
+##                          colig.venc2006
+## 24 PMDB/PAN/PFL/PHS/PPS/PRTB/PSDB/PTdoB
+## 25             PT/PSB/PMDB/PL/PTB/PCdoB
+## 26                     PSDB/PFL/PTB/PPS
+## 27                         PMDB/PPS/PFL
+##                                       colig.venc2010
+## 24             DEM/PMDB/PSDB/PPS/PTB/PSC/PSL/PTC/PRP
+## 25          PT/PMDB/PDT/PSB/PRB/PSL/PSC/PR/PTC/PCdoB
+## 26                     PSDB/DEM/PMDB/PSC/PPS/PHS/PMN
+## 27 PSDB/DEM/PTB/PR/PSC/PV/PTN/PRB/PRTB/PMN/PTC/PTdoB
+##                                                colig.venc2014 colig.venc2017
+## 24         PSD/PMDB/DEM/PRB/PR/PSC/PSDC/PROS/PV/PDT/PCdoB/PTB           <NA>
+## 25           PMDB/PSB/PT/PRB/PSD/PCdoB/PDT/PROS/PRTB/PSDC/PRP           <NA>
+## 26 PSDB/PSB/DEM/PRB/SD/PSC/PPS/PTC/PTN/PSL/PMN/PEN/PSDC/PTdoB           <NA>
+## 27                                             PMDB/PV/PT/PSD           <NA>
+##    cent.venc1990 cent.venc1994 cent.venc1998 cent.venc2002 cent.venc2006
+## 24           PFL          PMDB           PPB          PMDB          PMDB
+## 25           PFL          PSDB          PSDB           PFL            PT
+## 26          PMDB          PSDB          PSDB          PSDB          PSDB
+## 27          PMDB           PPR           PFL           PFL          PMDB
+##    cent.venc2010 cent.venc2014 cent.venc2017              colig.derr1990
+## 24           DEM           PSD          <NA>                        <NA>
+## 25            PT          PMDB          <NA> PT/PSB/PCB/PCdoB/PDT/PMN/PV
+## 26          PSDB          PSDB          <NA>             PDS/PTB/PDC/PRN
+## 27          PSDB          PMDB          <NA>  PDC/PFL/PL/PSC/PST/PTR/PMN
+##                            colig.derr1994                    colig.derr1998
+## 24             PPR/PP/PTB/PSC/PL/PFL/PSDB                              <NA>
+## 25                PDT/PMN/PP/PT/PSB/PCdoB PFL/PTB/PSD/PRN/PRP/PTN/PAN/PTdoB
+## 26                             PDT/PV/PRP            PPB/PFL/PL/PRN/PSL/PST
+## 27 PMDB/PSDB/PDT/PL/PSC/PSD/PRN/PSB/PCdoB                PMDB/PCdoB/PPS/PSD
+##                        colig.derr2002                           colig.derr2006
+## 24 PPB/PFL/PSL/PST/PDT/PTB/PRTB/PTdoB                          PP/PMN/PRONA/PV
+## 25                PT/PL/PCdoB/PCB/PMN PFL/PSDB/PP/PPS/PSC/PV/PTN/PAN/PHS/PTdoB
+## 26                   PT/PCdoB/PCB/PMN                     PT/PCdoB/PL/PRB/PRTB
+## 27                               <NA>          PSDB/PP/PTB/PSC/PL/PSB/PV/PTdoB
+##                                   colig.derr2010
+## 24                                  PP/PDT/PTdoB
+## 25                                          <NA>
+## 26   PT/PDT/PCdoB/PR/PSDC/PTN/PRB/PRP/PRTB/PTdoB
+## 27 PMDB/PP/PT/PDT/PPS/PSB/PSL/PSDC/PHS/PRP/PCdoB
+##                                                        colig.derr2014
+## 24                  PSDB/PP/PSB/PSL/PTN/PPS/PRTB/PHS/PTC/PEN/PTdoB/SD
+## 25         PSC/PSDB/DEM/PTB/PPS/PR/SD/PTC/PEN/PV/PHS/PMN/PSL/PP/PTdoB
+## 26                                               PMDB/PDT/PSD/PP/PROS
+## 27 SD/PDT/PSDB/PP/PTB/DEM/PPS/PSB/PRB/PSL/PSC/PR/PRTB/PHS/PTC/PRP/PEN
+##    colig.derr2017 cent.derr1990 cent.derr1994 cent.derr1998 cent.derr2002
+## 24           <NA>          PMDB           PPR          PMDB           PPB
+## 25           <NA>            PT           PDT           PFL            PT
+## 26           <NA>           PDS           PDT           PPB            PT
+## 27           <NA>           PDC          PMDB          PMDB          PMDB
+##    cent.derr2006 cent.derr2010 cent.derr2014 cent.derr2017       pib1990
+## 24            PP            PP          PSDB          <NA> 17,2942659152
+## 25           PFL          PRTB           PSC          <NA>   8,492623942
+## 26            PT            PT          PMDB          <NA> 22,9467064865
+## 27          PSDB          PMDB            SD          <NA>  7,4802792384
+##          pib1991       pib1992       pib1993       pib1994       pib1995
+## 24 17,4862919047 17,7565110336 18,4320880928 18,7359294484 19,5010579924
+## 25  8,4435004265  8,2226447498  8,4335197127  8,4825655399  8,4215892959
+## 26 22,4485135313 21,5229856589 22,4841773891 23,4447255754 24,1643222911
+## 27  7,6122181897  7,6062331607  7,5925648284  7,6169350505  7,7713175348
+##          pib1996       pib1997       pib1998       pib1999       pib2000
+## 24 19,8858255241 20,4634529228 20,1427853348 20,0822904535 20,5757218084
+## 25   8,561773119  9,0157557207  8,8628500033  8,6218728818  8,7672435729
+## 26 24,1031639625 24,5496938133 23,8962432492 23,1100251143 23,7092725642
+## 27  7,7757470707  7,9080208851  8,0789021631  8,0857119891  8,1320619577
+##          pib2001       pib2002       pib2003       pib2004       pib2005
+## 24 20,8844623857 20,9616339366 20,8384159784 22,0522553398 22,0431784035
+## 25  8,6820460686  8,8717633988  8,9504386847  9,3804812523   9,746751866
+## 26 23,4228446292 23,3234417859 22,8757550908 23,8912154431 24,3598569518
+## 27  8,0138560417  8,0758971422  8,7326442958  9,3678485905  9,7264417171
+##          pib2006       pib2007       pib2008       pib2009       pib2010
+## 24 22,2606141093   23,96452476 23,9180809893 23,6424543172 24,3984200027
+## 25  9,9776921472 10,9347879797 10,8817029713 11,2505972278 11,5724400015
+## 26 24,9467930565 27,6206370268 28,4034940399 27,9288107975 30,2431700034
+## 27   9,829354866 11,0237822544 11,3575263384 11,6840034913  12,461670002
+##          pib2011 presidente_ass1990 presidente_ass1994 presidente_ass1998
+## 24 25,0174683914                PDS                PDS               PSDB
+## 25 11,7197545373                PFL               <NA>                PFL
+## 26 30,3351441728               PMDB               PSDB               PSDB
+## 27 12,0513847615               <NA>               <NA>               <NA>
+##    presidente_ass2002 presidente_ass2006 presidente_ass2010 presidente_ass2014
+## 24                 PT               <NA>                PSD               PMDB
+## 25                PFL               PSDB                PSC               PMDB
+## 26               PSDB               PSDB                PSB               PSDB
+## 27               <NA>               <NA>               <NA>               <NA>
+##    alinhamento1990 alinhamento1994 alinhamento1998 alinhamento2002
+## 24               0               0               0               0
+## 25               1              NA               0               1
+## 26               1               1               1               1
+## 27              NA              NA              NA              NA
+##    alinhamento2006 alinhamento2010 alinhamento2014  nep1994       tampub1990
+## 24              NA               0               0 1.852039 3864440,51885973
+## 25               0               0               1 1.540130 971919,356653973
+## 26               1               0               1 1.108644 32030505,5565219
+## 27              NA              NA              NA 3.267424 336618,073532113
+##          tampub1991       tampub1992       tampub1993       tampub1994
+## 24 3044398,00952559 2878119,75130662 3233298,35490963 3883578,63480444
+## 25 1033326,59668615 960209,465362672 1023101,23672086 1093757,75386495
+## 26 29318383,7079537 26083676,9601677 29504411,1559908 30518738,9985881
+## 27  395704,33220278 299986,954758008 458680,363556348 545919,364528239
+##          tampub1995       tampub1996       tampub1997       tampub1998
+## 24 4239392,34190224  4329228,8310874 3933863,15598997 4118723,21824177
+## 25 1359761,69411054 1369064,65139731  1287005,6603136 1371625,49255682
+## 26 32451245,0300568 36454840,1901522 38684167,2518864 41904103,8133446
+## 27 576491,552242776  695778,42898056 706966,447184362 793937,877438079
+##          tampub1999       tampub2000       tampub2001       tampub2002
+## 24 4001104,51547176 4351501,64784291 4069839,68215204 4487510,19538674
+## 25 1332917,63824243 1399417,02637658 1347882,17013854 1593092,32922432
+## 26 40720661,2869789 34337301,0888346 32533001,4269696  31570213,574016
+## 27 771778,031620068 618568,172025916 591323,579673879 942548,599020474
+##          tampub2003       tampub2004       tampub2005       tampub2006
+## 24 4583523,25202327 4580035,05220288 4997253,66029641 5253204,99279084
+## 25 1541196,53447207 1550972,17264608 1694634,93724624 1960397,99369845
+## 26 31326075,7776173  30883214,726262 32673443,6775475 34138254,7949099
+## 27 980592,141717068 1038045,61036685 1109369,15573646 1265587,84651625
+##          tampub2007       tampub2008       tampub2009
+## 24  5672797,5807212 6149095,66638515 6262294,59770163
+## 25 2082847,29585588 2232124,70578603 2266779,22969508
+## 26 37750820,6501719  39947491,184932 42897556,2016075
+## 27 1387668,85772441  1464607,2921382 1575495,46613015
+\end{verbatim}
+\end{frame}
+
+\hypertarget{o-universo-tidyverse}{%
+\section{O Universo tidyverse}\label{o-universo-tidyverse}}
+
+\begin{frame}{Manifesto tidyverse}
+\protect\hypertarget{manifesto-tidyverse}{}
+O tidyverse, também chamado por muitos de hadleyverse, é um conjunto de
+pacotes que, por compartilharem esses princípios do manifesto tidy,
+podem ser utilizados naturalmente em conjunto. Pode-se dizer que existe
+o R antes do tidyverse e o R depois do tidyverse.
+
+Os princípios fundamentais do tidyverse são:
+
+\begin{itemize}
+\item
+  Reutilizar estruturas de dados existentes.
+\item
+  Organizar funções simples usando o pipe.
+\item
+  Aderir à programação funcional.
+\item
+  Projetado para ser usado por seres humanos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Manifesto tidy}
+\protect\hypertarget{manifesto-tidy}{}
+\begin{itemize}
+\item
+  Tidy Tools Manifesto
+  \url{https://cran.r-project.org/web/packages/tidyverse/vignettes/manifesto.html}
+\item
+  Tidy data vignette
+  \url{https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html}
+\item
+  Tidy Data paper \url{http://vita.had.co.nz/papers/tidy-data.pdf}
+\item
+  Conjunto de pacotes \url{https://www.tidyverse.org/packages/}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Usando o pipe - O operador \%\textgreater\%}
+\protect\hypertarget{usando-o-pipe---o-operador}{}
+O operador \%\textgreater\% (pipe) foi uma das grandes revoluções
+recentes do R, tornando a leitura de códigos mais lógica, fácil e
+compreensível.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\KeywordTok{library}\NormalTok{(magrittr)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Ideia}
+\protect\hypertarget{ideia}{}
+A ideia do operador \%\textgreater\% (pipe) é bem simples: usar o valor
+resultante da expressão do lado esquerdo como primeiro argumento da
+função do lado direito.
+
+\begin{itemize}
+\tightlist
+\item
+  As duas linhas abaixo são equivalentes.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{f}\NormalTok{(x, y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{\%\textgreater{}\%}\StringTok{ }\KeywordTok{f}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{E se aumentarmos o código?}
+\protect\hypertarget{e-se-aumentarmos-o-cuxf3digo}{}
+Vamos calcular a raiz quadrada da soma dos valores de 1 a 4.
+
+Primeiro, sem o pipe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{sum}\NormalTok{(x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.162278
+\end{verbatim}
+
+Agora com o pipe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\NormalTok{sum }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\NormalTok{sqrt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.162278
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{E se realmente tivermos muitas funções aninhadas?}
+\protect\hypertarget{e-se-realmente-tivermos-muitas-funuxe7uxf5es-aninhadas}{}
+A utilização do pipe transforma um código confuso e difícil de ser lido
+em algo \emph{simples e intuitivo}.
+\end{frame}
+
+\begin{frame}[fragile]{Receita de bolo - sem pipe}
+\protect\hypertarget{receita-de-bolo---sem-pipe}{}
+Tente entender o que é preciso fazer.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{esfrie}\NormalTok{(}
+  \KeywordTok{asse}\NormalTok{(}
+    \KeywordTok{coloque}\NormalTok{(}
+      \KeywordTok{bata}\NormalTok{(}
+        \KeywordTok{acrescente}\NormalTok{(}
+          \KeywordTok{recipiente}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"farinha"}\NormalTok{, }\DecValTok{2}\NormalTok{), }\StringTok{"água"}\NormalTok{, }
+                     \StringTok{"fermento"}\NormalTok{, }\StringTok{"leite"}\NormalTok{, }\StringTok{"óleo"}\NormalTok{), }
+          \StringTok{"farinha"}\NormalTok{, até =}\StringTok{ "macio"}\NormalTok{), }
+\NormalTok{        duração =}\StringTok{ "3min"}\NormalTok{), }
+      \DataTypeTok{lugar =} \StringTok{"forma"}\NormalTok{, }\DataTypeTok{tipo =} \StringTok{"grande"}\NormalTok{, }
+      \DataTypeTok{untada =} \OtherTok{TRUE}\NormalTok{), duração =}\StringTok{ "50min"}\NormalTok{), }
+  \StringTok{"geladeira"}\NormalTok{, }\StringTok{"20min"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Receita de bolo - com pipe}
+\protect\hypertarget{receita-de-bolo---com-pipe}{}
+Desistiu? Agora veja como fica escrevendo com o
+\texttt{\%\textgreater{}\%}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{recipiente}\NormalTok{(}\KeywordTok{rep}\NormalTok{(}\StringTok{"farinha"}\NormalTok{, }\DecValTok{2}\NormalTok{), }\StringTok{"água"}\NormalTok{, }\StringTok{"fermento"}\NormalTok{, }\StringTok{"leite"}\NormalTok{, }\StringTok{"óleo"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{acrescente}\NormalTok{(}\StringTok{"farinha"}\NormalTok{, até =}\StringTok{ "macio"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{bata}\NormalTok{(duração =}\StringTok{ "3min"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{coloque}\NormalTok{(}\DataTypeTok{lugar =} \StringTok{"forma"}\NormalTok{, }\DataTypeTok{tipo =} \StringTok{"grande"}\NormalTok{, }\DataTypeTok{untada =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{asse}\NormalTok{(duração =}\StringTok{ "50min"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{esfrie}\NormalTok{(}\StringTok{"geladeira"}\NormalTok{, }\StringTok{"20min"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\hypertarget{importauxe7uxe3o-no-tidyverse}{%
+\section{Importação no tidyverse}\label{importauxe7uxe3o-no-tidyverse}}
+
+\begin{frame}[fragile]{Importação com \texttt{readr}, \texttt{readxl},
+\texttt{haven} e \texttt{DBI}}
+\protect\hypertarget{importauxe7uxe3o-com-readr-readxl-haven-e-dbi}{}
+No tidyverse, geralmente
+
+\begin{itemize}
+\tightlist
+\item
+  Funções \texttt{read\_\textless{}formato\textgreater{}} servem para
+  ler um arquivo no formato \texttt{\textless{}formato\textgreater{}}
+\item
+  Funções \texttt{write\_\textless{}formato\textgreater{}} servem para
+  escrever num arquivo com o formato
+  \texttt{\textless{}formato\textgreater{}}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivos de texto}
+\protect\hypertarget{arquivos-de-texto}{}
+\begin{itemize}
+\item
+  \texttt{csv}, \texttt{tsv}, \texttt{txt}, \ldots{}
+\item
+  Para esses aqui, usar o pacote \texttt{readr}
+\item
+  Você também pode experimentar o \texttt{data.table::fread}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Arquivos binários}
+\protect\hypertarget{arquivos-binuxe1rios}{}
+\begin{itemize}
+\item
+  \texttt{.RData}, \texttt{.rds}, \texttt{.feather}, \texttt{.fst}
+\item
+  \texttt{.dta} (Stata), \texttt{.sas7bdat} (SAS), \texttt{.sav} (SPSS)
+\item
+  Ler com \texttt{readr}, \texttt{haven}, \texttt{feather},
+  \texttt{fst}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Bancos de dados}
+\protect\hypertarget{bancos-de-dados}{}
+\begin{itemize}
+\item
+  \texttt{MySQL}, \texttt{SQL\ Server}, \texttt{PostgreSQL},
+  \texttt{SQLite}, \ldots{}
+\item
+  \texttt{Spark}, \texttt{MongoDB}, \texttt{Hive}, \ldots{}
+\item
+  Utilizar pacotes \texttt{DBI} e \texttt{odbc}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Tidy data e janitor}
+\protect\hypertarget{tidy-data-e-janitor}{}
+Veremos mais à frente, mas janitor::clean\_names() é uma ferramenta tidy
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(janitor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'janitor'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+\end{verbatim}
+\end{frame}
+
+\hypertarget{pacotes-dplyr-e-tidyr}{%
+\section{\texorpdfstring{Pacotes \texttt{dplyr} e
+\texttt{tidyr}}{Pacotes dplyr e tidyr}}\label{pacotes-dplyr-e-tidyr}}
+
+\begin{frame}[fragile]{Conjunto de dados}
+\protect\hypertarget{conjunto-de-dados}{}
+Vamos trabalhar com a base \texttt{decisoes}, que contém decisões do
+Tribunal de Justiça de São Paulo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes \textless{}{-}}\StringTok{ }\KeywordTok{read\_rds}\NormalTok{(}\StringTok{"dados/decisoes.rds"}\NormalTok{)}
+\KeywordTok{glimpse}\NormalTok{(decisoes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 11,731
+## Columns: 9
+## $ `ID Decisão`     <chr> "11094999", "11093733", "11093677", "11093270", "1...
+## $ n_processo       <chr> "0057003-20.2017.8.26.0000", "0052762-03.2017.8.26...
+## $ `Classe/Assunto` <chr> "Habeas Corpus / Homicídio Simples", "Habeas Corpu...
+## $ Município        <chr> "Cosmópolis", "São Paulo", "Ribeirão Preto", "Araç...
+## $ Câmara           <chr> "3ª Câmara de Direito Criminal", "3ª Câmara de Dir...
+## $ `Data decisão`   <chr> "19/12/2017", "19/12/2017", "19/12/2017", "14/12/2...
+## $ `Data registro`  <chr> "19/12/2017", "19/12/2017", "19/12/2017", "19/12/2...
+## $ Juiz             <chr> "Luiz Antonio Cardoso", "Luiz Antonio Cardoso", "L...
+## $ `txt decisão`    <chr> NA, NA, NA, "Execução Penal –  Comutação de Penas ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes \textless{}{-}}\StringTok{ }\KeywordTok{read\_rds}\NormalTok{(}\StringTok{"dados/decisoes.rds"}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\NormalTok{janitor}\OperatorTok{::}\KeywordTok{clean\_names}\NormalTok{() }\CommentTok{\# com dois pontos eu não preciso usar library}
+\KeywordTok{glimpse}\NormalTok{(decisoes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 11,731
+## Columns: 9
+## $ id_decisao     <chr> "11094999", "11093733", "11093677", "11093270", "110...
+## $ n_processo     <chr> "0057003-20.2017.8.26.0000", "0052762-03.2017.8.26.0...
+## $ classe_assunto <chr> "Habeas Corpus / Homicídio Simples", "Habeas Corpus ...
+## $ municipio      <chr> "Cosmópolis", "São Paulo", "Ribeirão Preto", "Araçat...
+## $ camara         <chr> "3ª Câmara de Direito Criminal", "3ª Câmara de Direi...
+## $ data_decisao   <chr> "19/12/2017", "19/12/2017", "19/12/2017", "14/12/201...
+## $ data_registro  <chr> "19/12/2017", "19/12/2017", "19/12/2017", "19/12/201...
+## $ juiz           <chr> "Luiz Antonio Cardoso", "Luiz Antonio Cardoso", "Lui...
+## $ txt_decisao    <chr> NA, NA, NA, "Execução Penal –  Comutação de Penas – ...
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Características do \texttt{dplyr}}
+\protect\hypertarget{caracteruxedsticas-do-dplyr}{}
+\begin{itemize}
+\item
+  A utilização é facilitada com o emprego do operador
+  \texttt{\%\textgreater{}\%}
+\item
+  No primeiro argumento colocamos o \texttt{data.frame} ou o
+  \texttt{tibble}, e nos outros argumentos colocamos o que queremos
+  fazer.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{As cinco funções principais do \texttt{dplyr}}
+\protect\hypertarget{as-cinco-funuxe7uxf5es-principais-do-dplyr}{}
+\begin{itemize}
+\item
+  \texttt{select}: selecionar colunas
+\item
+  \texttt{filter}: filtrar linhas
+\item
+  \texttt{mutate}: criar colunas
+\item
+  \texttt{summarise}: sumarizar colunas
+\item
+  \texttt{arrange}: ordenar linhas
+\end{itemize}
+\end{frame}
+
+\hypertarget{select}{%
+\section{select}\label{select}}
+
+\begin{frame}[fragile]{\texttt{select}}
+\protect\hypertarget{select-1}{}
+\begin{itemize}
+\tightlist
+\item
+  Utilizar \texttt{starts\_with(x)}, \texttt{contains(x)},
+  \texttt{matches(x)}, \texttt{one\_of(x)}, etc.
+\item
+  Possível colocar nomes, índices, e intervalos de variáveis com
+  \texttt{:}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Em ação}
+\protect\hypertarget{em-auxe7uxe3o}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao, n\_processo, municipio, juiz)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,731 x 4
+##    id_decisao n_processo                municipio           juiz                
+##    <chr>      <chr>                     <chr>               <chr>               
+##  1 11094999   0057003-20.2017.8.26.0000 Cosmópolis          Luiz Antonio Cardoso
+##  2 11093733   0052762-03.2017.8.26.0000 São Paulo           Luiz Antonio Cardoso
+##  3 11093677   0055169-79.2017.8.26.0000 Ribeirão Preto      Luiz Antonio Cardoso
+##  4 11093270   9000580-82.2017.8.26.0032 Araçatuba           Grassi Neto         
+##  5 11093374   0052938-79.2017.8.26.0000 São Paulo           Grassi Neto         
+##  6 11093320   9000723-79.2017.8.26.0482 Presidente Prudente Grassi Neto         
+##  7 11091506   0003276-86.2015.8.26.0075 Bertioga            Grassi Neto         
+##  8 11093326   9000298-11.2017.8.26.0625 Taubaté             Grassi Neto         
+##  9 11092475   0004653-39.2015.8.26.0028 Aparecida           Grassi Neto         
+## 10 11093773   2221930-66.2017.8.26.0000 Jandira             Luiz Antonio Cardoso
+## # ... with 11,721 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Em ação}
+\protect\hypertarget{em-auxe7uxe3o-1}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(classe\_assunto}\OperatorTok{:}\NormalTok{id\_decisao, juiz)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,731 x 4
+##    classe_assunto                      n_processo        id_decisao juiz        
+##    <chr>                               <chr>             <chr>      <chr>       
+##  1 Habeas Corpus / Homicídio Simples   0057003-20.2017.~ 11094999   Luiz Antoni~
+##  2 Habeas Corpus / Roubo               0052762-03.2017.~ 11093733   Luiz Antoni~
+##  3 Habeas Corpus / DIREITO PENAL       0055169-79.2017.~ 11093677   Luiz Antoni~
+##  4 Agravo de Execução Penal / Pena Pr~ 9000580-82.2017.~ 11093270   Grassi Neto 
+##  5 Mandado de Segurança / Crimes do S~ 0052938-79.2017.~ 11093374   Grassi Neto 
+##  6 Agravo de Execução Penal / Pena Pr~ 9000723-79.2017.~ 11093320   Grassi Neto 
+##  7 Apelação / Tráfico de Drogas e Con~ 0003276-86.2015.~ 11091506   Grassi Neto 
+##  8 Agravo de Execução Penal / Livrame~ 9000298-11.2017.~ 11093326   Grassi Neto 
+##  9 Apelação / Tráfico de Drogas e Con~ 0004653-39.2015.~ 11092475   Grassi Neto 
+## 10 Habeas Corpus / Furto Qualificado   2221930-66.2017.~ 11093773   Luiz Antoni~
+## # ... with 11,721 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Em ação}
+\protect\hypertarget{em-auxe7uxe3o-2}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao, }\KeywordTok{starts\_with}\NormalTok{(}\StringTok{\textquotesingle{}data\_\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,731 x 3
+##    id_decisao data_decisao data_registro
+##    <chr>      <chr>        <chr>        
+##  1 11094999   19/12/2017   19/12/2017   
+##  2 11093733   19/12/2017   19/12/2017   
+##  3 11093677   19/12/2017   19/12/2017   
+##  4 11093270   14/12/2017   19/12/2017   
+##  5 11093374   14/12/2017   19/12/2017   
+##  6 11093320   14/12/2017   19/12/2017   
+##  7 11091506   14/12/2017   19/12/2017   
+##  8 11093326   14/12/2017   19/12/2017   
+##  9 11092475   14/12/2017   19/12/2017   
+## 10 11093773   19/12/2017   19/12/2017   
+## # ... with 11,721 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Operações}
+\protect\hypertarget{operauxe7uxf5es}{}
+\begin{itemize}
+\tightlist
+\item
+  selecione as colunas que acabam com ``cisao''.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\KeywordTok{ends\_with}\NormalTok{(}\StringTok{"cisao"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,731 x 3
+##    id_decisao data_decisao txt_decisao                                          
+##    <chr>      <chr>        <chr>                                                
+##  1 11094999   19/12/2017    <NA>                                                
+##  2 11093733   19/12/2017    <NA>                                                
+##  3 11093677   19/12/2017    <NA>                                                
+##  4 11093270   14/12/2017   "Execução Penal –  Comutação de Penas –  Decreto n. ~
+##  5 11093374   14/12/2017   "Mandado de segurança – Impetração por agente despro~
+##  6 11093320   14/12/2017   "Execução Penal – Apuração de falta grave em procedi~
+##  7 11091506   14/12/2017   "Tráfico de entorpecentes – Agente que traz consigo ~
+##  8 11093326   14/12/2017   "Execução Penal – Pedido de livramento condicional d~
+##  9 11092475   14/12/2017   "Tráfico de entorpecentes –  Agente que tem em depós~
+## 10 11093773   19/12/2017    <NA>                                                
+## # ... with 11,721 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Operações}
+\protect\hypertarget{operauxe7uxf5es-1}{}
+\begin{itemize}
+\tightlist
+\item
+  tire as colunas de texto = `txt\_decisao' e classe/assunto =
+  `classe\_assunto'.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Dica: veja os exemplos de \texttt{?select} em
+    \texttt{Drop\ variables\ ...}
+  \end{itemize}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{{-}}\NormalTok{classe\_assunto, }\OperatorTok{{-}}\NormalTok{txt\_decisao)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,731 x 7
+##    id_decisao n_processo   municipio  camara   data_decisao data_registro juiz  
+##    <chr>      <chr>        <chr>      <chr>    <chr>        <chr>         <chr> 
+##  1 11094999   0057003-20.~ Cosmópolis 3ª Câma~ 19/12/2017   19/12/2017    Luiz ~
+##  2 11093733   0052762-03.~ São Paulo  3ª Câma~ 19/12/2017   19/12/2017    Luiz ~
+##  3 11093677   0055169-79.~ Ribeirão ~ 3ª Câma~ 19/12/2017   19/12/2017    Luiz ~
+##  4 11093270   9000580-82.~ Araçatuba  8ª Câma~ 14/12/2017   19/12/2017    Grass~
+##  5 11093374   0052938-79.~ São Paulo  8ª Câma~ 14/12/2017   19/12/2017    Grass~
+##  6 11093320   9000723-79.~ President~ 8ª Câma~ 14/12/2017   19/12/2017    Grass~
+##  7 11091506   0003276-86.~ Bertioga   8ª Câma~ 14/12/2017   19/12/2017    Grass~
+##  8 11093326   9000298-11.~ Taubaté    8ª Câma~ 14/12/2017   19/12/2017    Grass~
+##  9 11092475   0004653-39.~ Aparecida  8ª Câma~ 14/12/2017   19/12/2017    Grass~
+## 10 11093773   2221930-66.~ Jandira    3ª Câma~ 19/12/2017   19/12/2017    Luiz ~
+## # ... with 11,721 more rows
+\end{verbatim}
+\end{frame}
+
+\hypertarget{filter}{%
+\section{filter}\label{filter}}
+
+\begin{frame}[fragile]{\texttt{filter}}
+\protect\hypertarget{filter-1}{}
+\begin{itemize}
+\tightlist
+\item
+  Use \texttt{,} ou \texttt{\&} para ``e'' e \texttt{\textbar{}} para
+  ``ou''.
+\item
+  Condições separadas por vírgulas é o mesmo que separar por
+  \texttt{\&}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{filter} em ação}
+\protect\hypertarget{filter-em-auxe7uxe3o}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(n\_processo, id\_decisao, municipio, juiz) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(municipio }\OperatorTok{==}\StringTok{ \textquotesingle{}São Paulo\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2,446 x 4
+##    n_processo                id_decisao municipio juiz                
+##    <chr>                     <chr>      <chr>     <chr>               
+##  1 0052762-03.2017.8.26.0000 11093733   São Paulo Luiz Antonio Cardoso
+##  2 0052938-79.2017.8.26.0000 11093374   São Paulo Grassi Neto         
+##  3 2214049-38.2017.8.26.0000 11093604   São Paulo Luiz Antonio Cardoso
+##  4 2227499-48.2017.8.26.0000 11093642   São Paulo Luiz Antonio Cardoso
+##  5 9002384-31.2017.8.26.0050 11093376   São Paulo Grassi Neto         
+##  6 0021158-39.2015.8.26.0050 11091508   São Paulo Grassi Neto         
+##  7 7005375-26.2015.8.26.0198 11091668   São Paulo Grassi Neto         
+##  8 9002039-65.2017.8.26.0050 11094451   São Paulo Grassi Neto         
+##  9 2203993-43.2017.8.26.0000 11094449   São Paulo Grassi Neto         
+## 10 0099423-21.2016.8.26.0050 11091474   São Paulo Grassi Neto         
+## # ... with 2,436 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Dica: usar \texttt{\%in\%}}
+\protect\hypertarget{dica-usar-in}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lubridate) }\CommentTok{\# para trabalhar com as datas}
+\CommentTok{\#\textasciigrave{}day(dmy(data\_decisao))\textasciigrave{} pega o dia da decisão. }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao, municipio, data\_decisao, juiz) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\CommentTok{\# municipio igual a campinas ou jaú, OU dia da decisão maior ou igual a 25}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(municipio }\OperatorTok{\%in\%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{\textquotesingle{}Campinas\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Jaú\textquotesingle{}}\NormalTok{) }\OperatorTok{|}\StringTok{ }\KeywordTok{day}\NormalTok{(}\KeywordTok{dmy}\NormalTok{(data\_decisao)) }\OperatorTok{\textgreater{}=}\StringTok{ }\DecValTok{25}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3,352 x 4
+##    id_decisao municipio data_decisao juiz             
+##    <chr>      <chr>     <chr>        <chr>            
+##  1 11093272   Campinas  14/12/2017   Grassi Neto      
+##  2 11093359   Campinas  07/12/2017   Grassi Neto      
+##  3 11088333   Campinas  14/12/2017   Grassi Neto      
+##  4 11093018   Jaú       28/11/2017   Ivan Sartori     
+##  5 11089105   Jaú       14/12/2017   Ricardo Tucunduva
+##  6 11089111   Campinas  14/12/2017   Ricardo Tucunduva
+##  7 11091386   Santos    27/11/2017   Ivo de Almeida   
+##  8 11091385   Araçatuba 27/11/2017   Ivo de Almeida   
+##  9 11091384   São Paulo 27/11/2017   Ivo de Almeida   
+## 10 11088180   Campinas  14/12/2017   Walter da Silva  
+## # ... with 3,342 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Mais ação}
+\protect\hypertarget{mais-auxe7uxe3o}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(juiz) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\CommentTok{\# filtra juízes que têm \textasciigrave{}Z\textasciigrave{} ou \textasciigrave{}z\textasciigrave{} no nome}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str\_detect}\NormalTok{(juiz, }\KeywordTok{regex}\NormalTok{(}\StringTok{"z"}\NormalTok{, }\DataTypeTok{ignore\_case =} \OtherTok{TRUE}\NormalTok{))) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\CommentTok{\# conta e ordena os juizes em ordem decrescente}
+\StringTok{  }\KeywordTok{count}\NormalTok{(juiz, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{head}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   juiz                          n
+##   <chr>                     <int>
+## 1 Gilberto Ferreira da Cruz   237
+## 2 Diniz Fernando              198
+## 3 Sérgio Mazina Martins       173
+## 4 Luiz Antonio Cardoso        163
+## 5 Rachid Vaz de Almeida       150
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\textbf{Obs}}
+\protect\hypertarget{obs}{}
+A função \texttt{str\_detect()} retorna \texttt{TRUE} se um elemento do
+vetor de textos é compatível com uma \emph{expressão regular}.
+Estudaremos o pacote \texttt{stringr} e as funções \texttt{str\_*} em
+outra aula.
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section}{}
+\begin{itemize}
+\tightlist
+\item
+  filtre apenas casos em que \texttt{id\_decisao} não é \texttt{NA}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(id\_decisao))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 65 x 9
+##    id_decisao n_processo classe_assunto municipio camara data_decisao
+##    <chr>      <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  2 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  3 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  4 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  5 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  6 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  7 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  8 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+##  9 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+## 10 <NA>       <NA>       <NA>           <NA>      <NA>   <NA>        
+## # ... with 55 more rows, and 3 more variables: data_registro <chr>, juiz <chr>,
+## #   txt_decisao <chr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-1}{}
+\begin{itemize}
+\item
+  filtre todas as decisões de 2018.
+
+  -- Dica: função \texttt{lubridate::year()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{year}\NormalTok{(}\KeywordTok{dmy}\NormalTok{(data\_decisao)) }\OperatorTok{==}\StringTok{ }\DecValTok{2018}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 314 x 9
+##    id_decisao n_processo classe_assunto municipio camara data_decisao
+##    <chr>      <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 11107242   0009617-6~ Apelação / Ro~ São Paulo 2ª Câ~ 15/01/2018  
+##  2 11107425   2227593-9~ Habeas Corpus~ Iepê      2ª Câ~ 15/01/2018  
+##  3 11107492   0076977-2~ Embargos de D~ São Paulo 2ª Câ~ 15/01/2018  
+##  4 11107361   0012191-3~ Agravo de Exe~ Campinas  2ª Câ~ 15/01/2018  
+##  5 11107383   2218460-2~ Habeas Corpus~ Sorocaba  2ª Câ~ 15/01/2018  
+##  6 11107331   0006928-6~ Agravo de Exe~ Sorocaba  2ª Câ~ 15/01/2018  
+##  7 11107651   0000297-5~ Apelação / Tr~ Junqueir~ 2ª Câ~ 15/01/2018  
+##  8 11107485   2225548-1~ Habeas Corpus~ Nazaré P~ 2ª Câ~ 15/01/2018  
+##  9 11107335   0006934-7~ Agravo de Exe~ Sorocaba  2ª Câ~ 15/01/2018  
+## 10 11107340   0006682-6~ Agravo de Exe~ Sorocaba  2ª Câ~ 15/01/2018  
+## # ... with 304 more rows, and 3 more variables: data_registro <chr>,
+## #   juiz <chr>, txt_decisao <chr>
+\end{verbatim}
+\end{frame}
+
+\hypertarget{mutate}{%
+\section{mutate}\label{mutate}}
+
+\begin{frame}[fragile]{\texttt{mutate}}
+\protect\hypertarget{mutate-1}{}
+\begin{itemize}
+\item
+  Aceita várias novas colunas iterativamente.
+\item
+  Novas variáveis devem ter o mesmo \texttt{length} que o \texttt{nrow}
+  do bd original ou \texttt{1}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{mutate} em ação}
+\protect\hypertarget{mutate-em-auxe7uxe3o}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(n\_processo, data\_decisao, data\_registro) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{tempo =} \KeywordTok{dmy}\NormalTok{(data\_registro) }\OperatorTok{{-}}\StringTok{ }\KeywordTok{dmy}\NormalTok{(data\_decisao))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,731 x 4
+##    n_processo                data_decisao data_registro tempo 
+##    <chr>                     <chr>        <chr>         <drtn>
+##  1 0057003-20.2017.8.26.0000 19/12/2017   19/12/2017    0 days
+##  2 0052762-03.2017.8.26.0000 19/12/2017   19/12/2017    0 days
+##  3 0055169-79.2017.8.26.0000 19/12/2017   19/12/2017    0 days
+##  4 9000580-82.2017.8.26.0032 14/12/2017   19/12/2017    5 days
+##  5 0052938-79.2017.8.26.0000 14/12/2017   19/12/2017    5 days
+##  6 9000723-79.2017.8.26.0482 14/12/2017   19/12/2017    5 days
+##  7 0003276-86.2015.8.26.0075 14/12/2017   19/12/2017    5 days
+##  8 9000298-11.2017.8.26.0625 14/12/2017   19/12/2017    5 days
+##  9 0004653-39.2015.8.26.0028 14/12/2017   19/12/2017    5 days
+## 10 2221930-66.2017.8.26.0000 19/12/2017   19/12/2017    0 days
+## # ... with 11,721 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-2}{}
+\begin{itemize}
+\tightlist
+\item
+  Crie uma coluna binária \texttt{drogas} que vale \texttt{TRUE} se no
+  texto da decisão algo é falado de drogas e \texttt{FALSE} caso
+  contrário. -- Dica: \texttt{str\_detect}
+\end{itemize}
+
+Obs.: Considere tanto a palavra `droga' como seus sinônimos, ou algum
+exemplo de droga e retire os casos em que \texttt{txt\_decisao} é vazio
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(txt\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{txt\_decisao =} \KeywordTok{tolower}\NormalTok{(txt\_decisao),}
+         \DataTypeTok{droga =} \KeywordTok{str\_detect}\NormalTok{(txt\_decisao,}
+    \StringTok{"droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na"}\NormalTok{)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(n\_processo,droga) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6,933 x 2
+##    n_processo                droga
+##    <chr>                     <lgl>
+##  1 9000580-82.2017.8.26.0032 FALSE
+##  2 0052938-79.2017.8.26.0000 FALSE
+##  3 9000723-79.2017.8.26.0482 FALSE
+##  4 0003276-86.2015.8.26.0075 TRUE 
+##  5 9000298-11.2017.8.26.0625 TRUE 
+##  6 0004653-39.2015.8.26.0028 TRUE 
+##  7 9000788-34.2017.8.26.0269 FALSE
+##  8 9000673-53.2017.8.26.0482 FALSE
+##  9 7005620-87.2017.8.26.0482 FALSE
+## 10 7001988-32.2017.8.26.0198 FALSE
+## # ... with 6,923 more rows
+\end{verbatim}
+\end{frame}
+
+\hypertarget{summarise}{%
+\section{summarise}\label{summarise}}
+
+\begin{frame}[fragile]{\texttt{summarise}}
+\protect\hypertarget{summarise-1}{}
+\begin{itemize}
+\tightlist
+\item
+  Retorna um vetor de tamanho \texttt{1} a partir de uma operação com as
+  variáveis (aplicação de uma função).
+\item
+  Geralmente é utilizado em conjunto com \texttt{group\_by()}.
+\item
+  Algumas funções importantes: \texttt{n()}, \texttt{n\_distinct()}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Em ação}
+\protect\hypertarget{em-auxe7uxe3o-3}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(n\_processo, municipio, data\_decisao) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\CommentTok{\#        pega ano da decisão}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{ano\_julgamento =} \KeywordTok{year}\NormalTok{(}\KeywordTok{dmy}\NormalTok{(data\_decisao)),}
+         \CommentTok{\# pega o ano do processo 0057003{-}20.2017.8.26.0000" {-}\textgreater{} "2017"}
+         \DataTypeTok{ano\_proc =} \KeywordTok{str\_sub}\NormalTok{(n\_processo, }\DecValTok{12}\NormalTok{, }\DecValTok{15}\NormalTok{),}
+         \CommentTok{\# transforma o ano em inteiro}
+         \DataTypeTok{ano\_proc =} \KeywordTok{as.numeric}\NormalTok{(ano\_proc),}
+         \CommentTok{\# calcula o tempo em anos}
+         \DataTypeTok{tempo\_anos =}\NormalTok{ ano\_julgamento }\OperatorTok{{-}}\StringTok{ }\NormalTok{ano\_proc) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(municipio) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{media\_anos =} \KeywordTok{mean}\NormalTok{(tempo\_anos),}
+            \DataTypeTok{min\_anos =} \KeywordTok{min}\NormalTok{(tempo\_anos),}
+            \DataTypeTok{max\_anos =} \KeywordTok{max}\NormalTok{(tempo\_anos)) }
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Resultado}
+\protect\hypertarget{resultado}{}
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 315 x 5
+##    municipio               n media_anos min_anos max_anos
+##    <chr>               <int>      <dbl>    <dbl>    <dbl>
+##  1 Adamantina             17      0.765        0        5
+##  2 Aguaí                  19      1.16         0        2
+##  3 Águas de Lindóia        5      1.4          0        4
+##  4 Agudos                  8      3.25         0        6
+##  5 Altinópolis             7      0.857        0        2
+##  6 Americana              56      1.41         0        9
+##  7 Américo Brasiliense     9      1.56         0        3
+##  8 Amparo                  9      2.11         0        7
+##  9 Andradina              41      0.707        0        5
+## 10 Angatuba                4      0.5          0        2
+## # ... with 305 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{usando \texttt{count()}}
+\protect\hypertarget{usando-count}{}
+A função \texttt{count()}, simplifica um
+\texttt{group\_by\ \%\textgreater{}\%\ summarise\ \%\textgreater{}\%\ ungroup}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{(juiz, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{prop =}\NormalTok{ n }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(n), }
+         \DataTypeTok{prop =}\NormalTok{ scales}\OperatorTok{::}\KeywordTok{percent}\NormalTok{(prop))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 100 x 3
+##    juiz                          n prop   
+##    <chr>                     <int> <chr>  
+##  1 Gilberto Ferreira da Cruz   237 2.0203%
+##  2 Francisco Orlando           226 1.9265%
+##  3 Diniz Fernando              198 1.6878%
+##  4 Walter da Silva             183 1.5600%
+##  5 De Paula Santos             182 1.5514%
+##  6 Machado de Andrade          182 1.5514%
+##  7 Newton Neves                180 1.5344%
+##  8 Leme Garcia                 179 1.5259%
+##  9 Grassi Neto                 177 1.5088%
+## 10 Figueiredo Gonçalves        176 1.5003%
+## # ... with 90 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{+ fácil ainda}
+\protect\hypertarget{fuxe1cil-ainda}{}
+mas sem formato \%
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{(juiz, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{prop =} \KeywordTok{prop.table}\NormalTok{(n))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 100 x 3
+##    juiz                          n   prop
+##    <chr>                     <int>  <dbl>
+##  1 Gilberto Ferreira da Cruz   237 0.0202
+##  2 Francisco Orlando           226 0.0193
+##  3 Diniz Fernando              198 0.0169
+##  4 Walter da Silva             183 0.0156
+##  5 De Paula Santos             182 0.0155
+##  6 Machado de Andrade          182 0.0155
+##  7 Newton Neves                180 0.0153
+##  8 Leme Garcia                 179 0.0153
+##  9 Grassi Neto                 177 0.0151
+## 10 Figueiredo Gonçalves        176 0.0150
+## # ... with 90 more rows
+\end{verbatim}
+\end{frame}
+
+\hypertarget{arrange}{%
+\section{arrange}\label{arrange}}
+
+\begin{frame}[fragile]{\texttt{arrange}}
+\protect\hypertarget{arrange-1}{}
+\begin{itemize}
+\item
+  Simplesmente ordena de acordo com as opções.
+\item
+  Utilizar \texttt{desc()} para ordem decrescente ou o sinal de menos
+  (\texttt{-}).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-3}{}
+\begin{itemize}
+\tightlist
+\item
+  Quem são os cinco relatores mais prolixos?
+\end{itemize}
+
+-- Dica: use \texttt{str\_length()} -- Lembre-se da função
+\texttt{head()}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-4}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(txt\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{tamanho =} \KeywordTok{str\_length}\NormalTok{(txt\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(juiz) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(), }
+            \DataTypeTok{tamanho\_mediana =} \KeywordTok{median}\NormalTok{(tamanho)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(n }\OperatorTok{\textgreater{}=}\StringTok{ }\DecValTok{10}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(tamanho\_mediana)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{head}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   juiz                                n tamanho_mediana
+##   <chr>                           <int>           <dbl>
+## 1 Airton Vieira                     154           3146.
+## 2 Ely Amioka                         81           1847 
+## 3 Grassi Neto                       141           1675 
+## 4 Alcides Malossi Junior             95           1541 
+## 5 Cesar Augusto Andrade de Castro    77           1341 
+## 6 Juvenal Duarte                    101           1320
+\end{verbatim}
+\end{frame}
+
+\hypertarget{tydyr}{%
+\section{tydyr}\label{tydyr}}
+
+\begin{frame}[fragile]{Alterando o formato de dados}
+\protect\hypertarget{alterando-o-formato-de-dados}{}
+Até agora, estudamos os principais ferramentas de transformação de dados
+do \texttt{dplyr}. Agora vamos aumentar nossa caixa-de-ferramentas com
+\texttt{tidyr}
+
+\begin{itemize}
+\tightlist
+\item
+  Carregando uma nova base de dados, que completa a de decisões.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{processos \textless{}{-}}\StringTok{ }\KeywordTok{read\_rds}\NormalTok{(}\StringTok{"dados/processos\_nested.rds"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}{Fomato tidy}
+\protect\hypertarget{fomato-tidy}{}
+\begin{itemize}
+\tightlist
+\item
+  Hadley Wickham \url{http://r4ds.had.co.nz/tidy-data.html}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Funções do pacote}
+\protect\hypertarget{funuxe7uxf5es-do-pacote}{}
+\begin{itemize}
+\item
+  Enquanto o \texttt{dplyr} faz recortes na base (com \texttt{filter()}e
+  \texttt{select()}) e adições simples (\texttt{mutate()},
+  \texttt{summarise()}), o \texttt{tidyr} mexe no \textbf{formato} da
+  tabela (\texttt{gather()}, \texttt{spread()}) e faz modificações menos
+  triviais.
+\item
+  As funções do \texttt{tidyr} geralmente vêm em pares com seus
+  inversos:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{gather()} e \texttt{spread()}, -\textgreater{} substituídas
+    por \texttt{pivot\_longer} e \texttt{pivot\_wider}
+  \item
+    \texttt{nest()} e \texttt{unnest()},
+  \item
+    \texttt{separate()} e \texttt{unite()}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Onde estamos}
+\protect\hypertarget{onde-estamos}{}
+\url{http://r4ds.had.co.nz/wrangle-intro.html}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{gather()}}
+\protect\hypertarget{gather}{}
+\begin{itemize}
+\item
+  \texttt{gather()} empilha o banco de dados
+\item
+  \texttt{pivot\_longer} empilha de um jeito ainda mais fácil
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(id\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao}\OperatorTok{:}\NormalTok{data\_registro) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\CommentTok{\# 1. nome da coluna que vai guardar os nomes de colunas empilhadas}
+\StringTok{  }\CommentTok{\# 2. nome da coluna que vai guardar os valores das colunas}
+\StringTok{  }\CommentTok{\# 3. seleção das colunas a serem empilhadas}
+\StringTok{  }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{key=}\StringTok{"variavel"}\NormalTok{, }\DataTypeTok{value=}\StringTok{"valor"}\NormalTok{, }\OperatorTok{{-}}\NormalTok{id\_decisao) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(id\_decisao)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 69,996 x 3
+##    id_decisao variavel       valor                                        
+##    <chr>      <chr>          <chr>                                        
+##  1 11026431   n_processo     0000009-51.2015.8.26.0546                    
+##  2 11026431   classe_assunto Apelação / Tráfico de Drogas e Condutas Afins
+##  3 11026431   municipio      Itapira                                      
+##  4 11026431   camara         5ª Câmara de Direito Criminal                
+##  5 11026431   data_decisao   30/11/2017                                   
+##  6 11026431   data_registro  01/12/2017                                   
+##  7 11026432   n_processo     0002267-69.2013.8.26.0654                    
+##  8 11026432   classe_assunto Apelação / Furto Qualificado                 
+##  9 11026432   municipio      Vargem Grande Paulista                       
+## 10 11026432   camara         5ª Câmara de Direito Criminal                
+## # ... with 69,986 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pivot\_longer}}
+\protect\hypertarget{pivot_longer}{}
+Base \texttt{relig\_income} do \texttt{tidyr} 3 variáveis:
+
+\begin{itemize}
+\tightlist
+\item
+  religion, nas linhas
+\item
+  income, nas colunas e
+\item
+  count, nas células
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tidyr}\OperatorTok{::}\NormalTok{relig\_income}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 18 x 11
+##    religion `<$10k` `$10-20k` `$20-30k` `$30-40k` `$40-50k` `$50-75k` `$75-100k`
+##    <chr>      <dbl>     <dbl>     <dbl>     <dbl>     <dbl>     <dbl>      <dbl>
+##  1 Agnostic      27        34        60        81        76       137        122
+##  2 Atheist       12        27        37        52        35        70         73
+##  3 Buddhist      27        21        30        34        33        58         62
+##  4 Catholic     418       617       732       670       638      1116        949
+##  5 Don’t k~      15        14        15        11        10        35         21
+##  6 Evangel~     575       869      1064       982       881      1486        949
+##  7 Hindu          1         9         7         9        11        34         47
+##  8 Histori~     228       244       236       238       197       223        131
+##  9 Jehovah~      20        27        24        24        21        30         15
+## 10 Jewish        19        19        25        25        30        95         69
+## 11 Mainlin~     289       495       619       655       651      1107        939
+## 12 Mormon        29        40        48        51        56       112         85
+## 13 Muslim         6         7         9        10         9        23         16
+## 14 Orthodox      13        17        23        32        32        47         38
+## 15 Other C~       9         7        11        13        13        14         18
+## 16 Other F~      20        33        40        46        49        63         46
+## 17 Other W~       5         2         3         4         2         7          3
+## 18 Unaffil~     217       299       374       365       341       528        407
+## # ... with 3 more variables: `$100-150k` <dbl>, `>150k` <dbl>, `Don't
+## #   know/refused` <dbl>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-5}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tidyr}\OperatorTok{::}\NormalTok{relig\_income }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{pivot\_longer}\NormalTok{(}\OperatorTok{!}\NormalTok{religion, }
+               \DataTypeTok{names\_to =} \StringTok{"income"}\NormalTok{, }\CommentTok{\# diz a varável onde entrarão os nomes}
+               \DataTypeTok{values\_to =} \StringTok{"count"} \CommentTok{\# diz a variável onde entrarão os valores}
+\NormalTok{               )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 180 x 3
+##    religion income             count
+##    <chr>    <chr>              <dbl>
+##  1 Agnostic <$10k                 27
+##  2 Agnostic $10-20k               34
+##  3 Agnostic $20-30k               60
+##  4 Agnostic $30-40k               81
+##  5 Agnostic $40-50k               76
+##  6 Agnostic $50-75k              137
+##  7 Agnostic $75-100k             122
+##  8 Agnostic $100-150k            109
+##  9 Agnostic >150k                 84
+## 10 Agnostic Don't know/refused    96
+## # ... with 170 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{spread()}}
+\protect\hypertarget{spread}{}
+\begin{itemize}
+\item
+  \texttt{spread()} espalha uma variável nas colunas e preenche com
+  outra variável
+\item
+  Função inversa de \texttt{gather}
+\item
+  Bem mais fácil com \texttt{pivot\_wider}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(id\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao}\OperatorTok{:}\NormalTok{data\_registro) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{gather}\NormalTok{(key, value, }\OperatorTok{{-}}\NormalTok{id\_decisao) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\CommentTok{\# 1. coluna a ser espalhada}
+\StringTok{  }\CommentTok{\# 2. valores da coluna}
+\StringTok{  }\KeywordTok{spread}\NormalTok{(key, value)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,666 x 7
+##    id_decisao camara classe_assunto data_decisao data_registro municipio
+##    <chr>      <chr>  <chr>          <chr>        <chr>         <chr>    
+##  1 11026431   5ª Câ~ Apelação / Tr~ 30/11/2017   01/12/2017    Itapira  
+##  2 11026432   5ª Câ~ Apelação / Fu~ 30/11/2017   01/12/2017    Vargem G~
+##  3 11026433   5ª Câ~ Apelação / Ro~ 30/11/2017   01/12/2017    Sertãozi~
+##  4 11026434   12ª C~ Agravo de Exe~ 18/10/2017   01/12/2017    Ribeirão~
+##  5 11026435   15ª C~ Apelação / Tr~ 30/11/2017   01/12/2017    São Paulo
+##  6 11026442   5ª Câ~ Apelação / Es~ 30/11/2017   01/12/2017    Jales    
+##  7 11026445   13ª C~ Apelação / Us~ 30/11/2017   01/12/2017    Santa Fé~
+##  8 11026453   5ª Câ~ Apelação / Cr~ 30/11/2017   01/12/2017    Franca   
+##  9 11026455   12ª C~ Apelação / Ro~ 05/07/2017   01/12/2017    Franca   
+## 10 11026456   12ª C~ Apelação / Ro~ 03/05/2017   01/12/2017    São José~
+## # ... with 11,656 more rows, and 1 more variable: n_processo <chr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{pivot\_wider}}
+\protect\hypertarget{pivot_wider}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(id\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao}\OperatorTok{:}\NormalTok{data\_registro) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot\_longer}\NormalTok{(}\OperatorTok{!}\NormalTok{id\_decisao, }
+               \DataTypeTok{names\_to =} \StringTok{"tipo"}\NormalTok{, }\CommentTok{\# diz a varável onde entrarão os nomes}
+               \DataTypeTok{values\_to =} \StringTok{"info"} \CommentTok{\# diz a variável onde entrarão os valores}
+\NormalTok{               ) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\CommentTok{\# 1. coluna a ser espalhada}
+\StringTok{  }\CommentTok{\# 2. valores da coluna}
+\StringTok{  }\KeywordTok{pivot\_wider}\NormalTok{(}\DataTypeTok{names\_from =} \StringTok{"tipo"}\NormalTok{,}
+              \DataTypeTok{values\_from =} \StringTok{"info"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 11,666 x 7
+##    id_decisao n_processo classe_assunto municipio camara data_decisao
+##    <chr>      <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 11094999   0057003-2~ Habeas Corpus~ Cosmópol~ 3ª Câ~ 19/12/2017  
+##  2 11093733   0052762-0~ Habeas Corpus~ São Paulo 3ª Câ~ 19/12/2017  
+##  3 11093677   0055169-7~ Habeas Corpus~ Ribeirão~ 3ª Câ~ 19/12/2017  
+##  4 11093270   9000580-8~ Agravo de Exe~ Araçatuba 8ª Câ~ 14/12/2017  
+##  5 11093374   0052938-7~ Mandado de Se~ São Paulo 8ª Câ~ 14/12/2017  
+##  6 11093320   9000723-7~ Agravo de Exe~ Presiden~ 8ª Câ~ 14/12/2017  
+##  7 11091506   0003276-8~ Apelação / Tr~ Bertioga  8ª Câ~ 14/12/2017  
+##  8 11093326   9000298-1~ Agravo de Exe~ Taubaté   8ª Câ~ 14/12/2017  
+##  9 11092475   0004653-3~ Apelação / Tr~ Aparecida 8ª Câ~ 14/12/2017  
+## 10 11093773   2221930-6~ Habeas Corpus~ Jandira   3ª Câ~ 19/12/2017  
+## # ... with 11,656 more rows, and 1 more variable: data_registro <chr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-6}{}
+\begin{itemize}
+\tightlist
+\item
+  Qual juiz julga a maior proporção de processos que tratam de drogas
+\end{itemize}
+
+-- Dica: construa um \texttt{data.frame} contendo as colunas juiz,
+n\_processos\_drogas, n\_processos\_n\_drogas e total\_processos,
+remodelando os dados para haver um juiz por linha e utilizando
+\texttt{spread()}
+\end{frame}
+
+\begin{frame}[fragile]{Resolução}
+\protect\hypertarget{resoluuxe7uxe3o}{}
+\begin{verbatim}
+## `summarise()` regrouping output by 'juiz' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 65 x 5
+## # Groups:   juiz [65]
+##    juiz                   droga n_droga total proporcao
+##    <chr>                  <dbl>   <dbl> <dbl>     <dbl>
+##  1 Airton Vieira             23     131   154     0.149
+##  2 Alcides Malossi Junior    23      72    95     0.242
+##  3 Alexandre Almeida         41     122   163     0.252
+##  4 Amaro Thomé               36      96   132     0.273
+##  5 Andrade Sampaio           35      79   114     0.307
+##  6 Angélica de Almeida        2       6     8     0.25 
+##  7 Antonio Tadeu Ottoni       0       1     1     0    
+##  8 Bandeira Lins              0       2     2     0    
+##  9 Camargo Aranha Filho      32     109   141     0.227
+## 10 Camilo Léllis             32     133   165     0.194
+## # ... with 55 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Exercício}
+\protect\hypertarget{exercuxedcio}{}
+\begin{itemize}
+\item
+  Qual quantidade mensal de decisões por juiz?
+\item
+  Dica: use \texttt{data\_decisao} \texttt{dmy()} e \texttt{month()}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Resolução}
+\protect\hypertarget{resoluuxe7uxe3o-1}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(txt\_decisao)) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{txt\_decisao =} \KeywordTok{tolower}\NormalTok{(txt\_decisao),}
+         \DataTypeTok{droga =} \KeywordTok{str\_detect}\NormalTok{(txt\_decisao,}
+    \StringTok{"droga|entorpecente|psicotr[óo]pico|maconha|haxixe|coca[íi]na"}\NormalTok{),}
+    \DataTypeTok{droga=}\KeywordTok{case\_when}\NormalTok{(}
+\NormalTok{      droga}\OperatorTok{==}\OtherTok{TRUE} \OperatorTok{\textasciitilde{}}\StringTok{ "droga"}\NormalTok{,}
+\NormalTok{      droga}\OperatorTok{==}\OtherTok{FALSE} \OperatorTok{\textasciitilde{}}\StringTok{ "n\_droga"}
+\NormalTok{    )) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{group\_by}\NormalTok{(juiz,droga) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n=}\KeywordTok{n}\NormalTok{()) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{spread}\NormalTok{(droga,n,}\DataTypeTok{fill =} \DecValTok{0}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total=}\NormalTok{droga}\OperatorTok{+}\NormalTok{n\_droga,}
+         \DataTypeTok{proporcao=}\NormalTok{droga}\OperatorTok{/}\NormalTok{total)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Resultado}
+\protect\hypertarget{resultado-1}{}
+\begin{verbatim}
+## `summarise()` regrouping output by 'juiz' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 65 x 5
+## # Groups:   juiz [65]
+##    juiz                   droga n_droga total proporcao
+##    <chr>                  <dbl>   <dbl> <dbl>     <dbl>
+##  1 Airton Vieira             23     131   154     0.149
+##  2 Alcides Malossi Junior    23      72    95     0.242
+##  3 Alexandre Almeida         41     122   163     0.252
+##  4 Amaro Thomé               36      96   132     0.273
+##  5 Andrade Sampaio           35      79   114     0.307
+##  6 Angélica de Almeida        2       6     8     0.25 
+##  7 Antonio Tadeu Ottoni       0       1     1     0    
+##  8 Bandeira Lins              0       2     2     0    
+##  9 Camargo Aranha Filho      32     109   141     0.227
+## 10 Camilo Léllis             32     133   165     0.194
+## # ... with 55 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}{Exemplo para o ggplot}
+\protect\hypertarget{exemplo-para-o-ggplot}{}
+\end{frame}
+
+\begin{frame}[fragile]{Unindo e separando colunas}
+\protect\hypertarget{unindo-e-separando-colunas}{}
+\begin{itemize}
+\tightlist
+\item
+  \texttt{unite} junta duas ou mais colunas usando algum separador
+  (\texttt{\_}, por exemplo).
+\item
+  \texttt{separate} faz o inverso de \texttt{unite}, e uma coluna em
+  várias usando um separador.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplo de separação de colunas}
+\protect\hypertarget{exemplo-de-separauxe7uxe3o-de-colunas}{}
+\begin{itemize}
+\tightlist
+\item
+  Olhe os valores da variável classe\_assunto
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de separação de colunas}
+\protect\hypertarget{exemplo-de-separauxe7uxe3o-de-colunas-1}{}
+\begin{itemize}
+\item
+  Vamos separar a coluna classe\_assunto em duas colunas
+\item
+  coluna classe e coluna assunto
+\item
+  Existe separador? -\textgreater{} sim, \texttt{/}
+\item
+  Usei count apenas em assunto
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Em ação}
+\protect\hypertarget{em-auxe7uxe3o-4}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(n\_processo, classe\_assunto) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(classe\_assunto, }\KeywordTok{c}\NormalTok{(}\StringTok{\textquotesingle{}classe\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}assunto\textquotesingle{}}\NormalTok{), }\DataTypeTok{sep =} \StringTok{\textquotesingle{} / \textquotesingle{}}\NormalTok{, }
+           \DataTypeTok{extra =} \StringTok{\textquotesingle{}merge\textquotesingle{}}\NormalTok{, }\DataTypeTok{fill =} \StringTok{\textquotesingle{}right\textquotesingle{}}\NormalTok{) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{(assunto, }\DataTypeTok{sort =} \OtherTok{TRUE}\NormalTok{)}
+
+\CommentTok{\#\# count é um jeito resumido de usar group\_by() \%\textgreater{}\% summarise(n())}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{Em ação}
+\protect\hypertarget{em-auxe7uxe3o-5}{}
+\begin{verbatim}
+## # A tibble: 152 x 2
+##    assunto                                n
+##    <chr>                              <int>
+##  1 Tráfico de Drogas e Condutas Afins  2441
+##  2 Pena Privativa de Liberdade         1106
+##  3 Roubo Majorado                      1093
+##  4 Furto Qualificado                    838
+##  5 Roubo                                780
+##  6 Progressão de Regime                 607
+##  7 Furto                                450
+##  8 Receptação                           353
+##  9 Homicídio Qualificado                329
+## 10 Crimes de Trânsito                   322
+## # ... with 142 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{List columns: \texttt{nest()} e
+\texttt{unnest()}}
+\protect\hypertarget{list-columns-nest-e-unnest}{}
+\texttt{nest()} e \texttt{unnest()} são operações inversas e servem para
+tratar dados complexos, como o que temos em \texttt{processos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d\_partes \textless{}{-}}\StringTok{ }\NormalTok{processos }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(n\_processo, partes) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{unnest}\NormalTok{(partes)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-7}{}
+As list columns são uma forma condensada de guardar dados que estariam
+em múltiplas tabelas. Por exemplo, uma alternativa à colocar as
+\texttt{partes} numa list column seria guardar a tabela
+\texttt{d\_partes} separadamente.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(d\_partes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 37,579
+## Columns: 5
+## $ n_processo <chr> "0000003-71.2016.8.26.0073", "0000003-71.2016.8.26.0073"...
+## $ id         <int> 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1,...
+## $ name       <chr> "JOSE MARIA JUSTINO NETO", "Defensoria Pública do Estado...
+## $ part       <chr> "Apelante", "Apelante", "Apelado", "Apelante", "Apelante...
+## $ role       <chr> "Apelante", "Apelante", "Apelado", "Apelante", "Advogado...
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Duplicatas}
+\protect\hypertarget{duplicatas}{}
+Para retirar duplicatas, utilizar \texttt{distinct}. Ele considera
+apenas a primeira linha em que encontra um padrão para as combinações de
+variáveis escolhidas e descarta as demais.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{distinct}\NormalTok{(municipio)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 315 x 1
+##    municipio          
+##    <chr>              
+##  1 Cosmópolis         
+##  2 São Paulo          
+##  3 Ribeirão Preto     
+##  4 Araçatuba          
+##  5 Presidente Prudente
+##  6 Bertioga           
+##  7 Taubaté            
+##  8 Aparecida          
+##  9 Jandira            
+## 10 Flórida Paulista   
+## # ... with 305 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Por coluna}
+\protect\hypertarget{por-coluna}{}
+Para manter as demais colunas, use \texttt{.keep\_all=}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{distinct}\NormalTok{(municipio, camara, }
+           \DataTypeTok{.keep\_all =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2,760 x 9
+##    id_decisao n_processo classe_assunto municipio camara data_decisao
+##    <chr>      <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 11094999   0057003-2~ Habeas Corpus~ Cosmópol~ 3ª Câ~ 19/12/2017  
+##  2 11093733   0052762-0~ Habeas Corpus~ São Paulo 3ª Câ~ 19/12/2017  
+##  3 11093677   0055169-7~ Habeas Corpus~ Ribeirão~ 3ª Câ~ 19/12/2017  
+##  4 11093270   9000580-8~ Agravo de Exe~ Araçatuba 8ª Câ~ 14/12/2017  
+##  5 11093374   0052938-7~ Mandado de Se~ São Paulo 8ª Câ~ 14/12/2017  
+##  6 11093320   9000723-7~ Agravo de Exe~ Presiden~ 8ª Câ~ 14/12/2017  
+##  7 11091506   0003276-8~ Apelação / Tr~ Bertioga  8ª Câ~ 14/12/2017  
+##  8 11093326   9000298-1~ Agravo de Exe~ Taubaté   8ª Câ~ 14/12/2017  
+##  9 11092475   0004653-3~ Apelação / Tr~ Aparecida 8ª Câ~ 14/12/2017  
+## 10 11093773   2221930-6~ Habeas Corpus~ Jandira   3ª Câ~ 19/12/2017  
+## # ... with 2,750 more rows, and 3 more variables: data_registro <chr>,
+## #   juiz <chr>, txt_decisao <chr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{janitor::get\_dupes()}}
+\protect\hypertarget{janitorget_dupes}{}
+Use \texttt{janitor::get\_dupes()} para averiguar os casos em que há
+repetição de combinações de colunas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{get\_dupes}\NormalTok{(n\_processo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 114 x 10
+##    n_processo dupe_count id_decisao classe_assunto municipio camara data_decisao
+##    <chr>           <int> <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 0000276-8~          2 11051087   Apelação / Tr~ Itaporan~ 2ª Câ~ 27/11/2017  
+##  2 0000276-8~          2 11093633   Embargos de D~ Itaporan~ 2ª Câ~ 18/12/2017  
+##  3 0000358-1~          2 11108278   Embargos de D~ São Paulo 2ª Câ~ 15/01/2018  
+##  4 0000358-1~          2 11028129   Apelação / Ro~ São Paulo 2ª Câ~ 27/11/2017  
+##  5 0002236-1~          2 11041351   Apelação / Co~ Nhandeara 1ª Câ~ 27/11/2017  
+##  6 0002236-1~          2 11041352   Apelação / Co~ Nhandeara 1ª Câ~ 27/11/2017  
+##  7 0004453-2~          2 11041132   Apelação / Tr~ São Paulo 2ª Câ~ 13/11/2017  
+##  8 0004453-2~          2 11093635   Embargos de D~ São Paulo 2ª Câ~ 18/12/2017  
+##  9 0004636-5~          3 11032094   Apelação / Tr~ Olímpia   2ª Câ~ 27/11/2017  
+## 10 0004636-5~          3 11032093   Apelação / Tr~ Olímpia   2ª Câ~ 27/11/2017  
+## # ... with 104 more rows, and 3 more variables: data_registro <chr>,
+## #   juiz <chr>, txt_decisao <chr>
+\end{verbatim}
+\end{frame}
+
+\hypertarget{joins}{%
+\section{Joins}\label{joins}}
+
+\begin{frame}{Dados relacionais}
+\protect\hypertarget{dados-relacionais}{}
+\begin{itemize}
+\tightlist
+\item
+  Hadley Wickham \url{http://r4ds.had.co.nz/relational-data.html}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Principais funções}
+\protect\hypertarget{principais-funuxe7uxf5es}{}
+Para juntar tabelas, usar \texttt{inner\_join}, \texttt{left\_join},
+\texttt{anti\_join}, etc.
+\end{frame}
+
+\begin{frame}{Visualizando}
+\protect\hypertarget{visualizando}{}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de inner join:}
+\protect\hypertarget{exemplo-de-inner-join}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(data\_registro }\OperatorTok{==}\StringTok{ "18/01/2018"}\NormalTok{, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(id\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao, n\_processo) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{inner\_join}\NormalTok{(processos, }\StringTok{"n\_processo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-8}{}
+\begin{verbatim}
+## # A tibble: 169 x 5
+##    id_decisao n_processo             infos           partes        results      
+##    <chr>      <chr>                  <list>          <list>        <list>       
+##  1 11109089   0003779-93.2015.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  2 11109088   3001293-25.2013.8.26.~ <tibble [13 x ~ <tibble [3 x~ <tibble [1 x~
+##  3 11108246   0063566-45.2015.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  4 11108245   0003528-84.2015.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  5 11109087   0008470-76.2015.8.26.~ <tibble [14 x ~ <tibble [4 x~ <tibble [1 x~
+##  6 11109086   0013767-62.2012.8.26.~ <tibble [14 x ~ <tibble [4 x~ <tibble [1 x~
+##  7 11109085   3019561-54.2013.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  8 11108348   0003072-91.2017.8.26.~ <tibble [11 x ~ <tibble [3 x~ <tibble [1 x~
+##  9 11108725   0009578-41.2017.8.26.~ <tibble [12 x ~ <tibble [4 x~ <tibble [1 x~
+## 10 11108347   3001116-52.2013.8.26.~ <tibble [12 x ~ <tibble [3 x~ <tibble [1 x~
+## # ... with 159 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplo de right join:}
+\protect\hypertarget{exemplo-de-right-join}{}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(data\_registro }\OperatorTok{==}\StringTok{ "18/01/2018"}\NormalTok{, }\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(id\_decisao)) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(id\_decisao, n\_processo) }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{right\_join}\NormalTok{(processos, }\StringTok{"n\_processo"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-9}{}
+\begin{verbatim}
+## # A tibble: 11,638 x 5
+##    id_decisao n_processo             infos           partes        results      
+##    <chr>      <chr>                  <list>          <list>        <list>       
+##  1 11109089   0003779-93.2015.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  2 11109088   3001293-25.2013.8.26.~ <tibble [13 x ~ <tibble [3 x~ <tibble [1 x~
+##  3 11108246   0063566-45.2015.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  4 11108245   0003528-84.2015.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  5 11109087   0008470-76.2015.8.26.~ <tibble [14 x ~ <tibble [4 x~ <tibble [1 x~
+##  6 11109086   0013767-62.2012.8.26.~ <tibble [14 x ~ <tibble [4 x~ <tibble [1 x~
+##  7 11109085   3019561-54.2013.8.26.~ <tibble [14 x ~ <tibble [3 x~ <tibble [1 x~
+##  8 11108348   0003072-91.2017.8.26.~ <tibble [11 x ~ <tibble [3 x~ <tibble [1 x~
+##  9 11108725   0009578-41.2017.8.26.~ <tibble [12 x ~ <tibble [4 x~ <tibble [1 x~
+## 10 11108347   3001116-52.2013.8.26.~ <tibble [12 x ~ <tibble [3 x~ <tibble [1 x~
+## # ... with 11,628 more rows
+\end{verbatim}
+\end{frame}
+
+\hypertarget{limpeza}{%
+\section{Limpeza}\label{limpeza}}
+
+\begin{frame}[fragile]{Duplicatas}
+\protect\hypertarget{duplicatas-1}{}
+Para retirar duplicatas, utilizar \texttt{distinct}. Ele considera
+apenas a primeira linha em que encontra um padrão para as combinações de
+variáveis escolhidas e descarta as demais.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{distinct}\NormalTok{(municipio)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-10}{}
+\begin{verbatim}
+## # A tibble: 315 x 1
+##    municipio          
+##    <chr>              
+##  1 Cosmópolis         
+##  2 São Paulo          
+##  3 Ribeirão Preto     
+##  4 Araçatuba          
+##  5 Presidente Prudente
+##  6 Bertioga           
+##  7 Taubaté            
+##  8 Aparecida          
+##  9 Jandira            
+## 10 Flórida Paulista   
+## # ... with 305 more rows
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Por coluna}
+\protect\hypertarget{por-coluna-1}{}
+Para manter as demais colunas, use \texttt{.keep\_all=}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}
+\StringTok{  }\KeywordTok{distinct}\NormalTok{(municipio, camara, }
+           \DataTypeTok{.keep\_all =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-11}{}
+\begin{verbatim}
+## # A tibble: 2,760 x 9
+##    id_decisao n_processo classe_assunto municipio camara data_decisao
+##    <chr>      <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 11094999   0057003-2~ Habeas Corpus~ Cosmópol~ 3ª Câ~ 19/12/2017  
+##  2 11093733   0052762-0~ Habeas Corpus~ São Paulo 3ª Câ~ 19/12/2017  
+##  3 11093677   0055169-7~ Habeas Corpus~ Ribeirão~ 3ª Câ~ 19/12/2017  
+##  4 11093270   9000580-8~ Agravo de Exe~ Araçatuba 8ª Câ~ 14/12/2017  
+##  5 11093374   0052938-7~ Mandado de Se~ São Paulo 8ª Câ~ 14/12/2017  
+##  6 11093320   9000723-7~ Agravo de Exe~ Presiden~ 8ª Câ~ 14/12/2017  
+##  7 11091506   0003276-8~ Apelação / Tr~ Bertioga  8ª Câ~ 14/12/2017  
+##  8 11093326   9000298-1~ Agravo de Exe~ Taubaté   8ª Câ~ 14/12/2017  
+##  9 11092475   0004653-3~ Apelação / Tr~ Aparecida 8ª Câ~ 14/12/2017  
+## 10 11093773   2221930-6~ Habeas Corpus~ Jandira   3ª Câ~ 19/12/2017  
+## # ... with 2,750 more rows, and 3 more variables: data_registro <chr>,
+## #   juiz <chr>, txt_decisao <chr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{janitor::get\_dupes()}}
+\protect\hypertarget{janitorget_dupes-1}{}
+Use \texttt{janitor::get\_dupes()} para averiguar os casos em que há
+repetição de combinações de colunas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{decisoes }\OperatorTok{\%\textgreater{}\%}\StringTok{ }
+\StringTok{  }\KeywordTok{get\_dupes}\NormalTok{(n\_processo)}
+\end{Highlighting}
+\end{Shaded}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-12}{}
+\begin{verbatim}
+## # A tibble: 114 x 10
+##    n_processo dupe_count id_decisao classe_assunto municipio camara data_decisao
+##    <chr>           <int> <chr>      <chr>          <chr>     <chr>  <chr>       
+##  1 0000276-8~          2 11051087   Apelação / Tr~ Itaporan~ 2ª Câ~ 27/11/2017  
+##  2 0000276-8~          2 11093633   Embargos de D~ Itaporan~ 2ª Câ~ 18/12/2017  
+##  3 0000358-1~          2 11108278   Embargos de D~ São Paulo 2ª Câ~ 15/01/2018  
+##  4 0000358-1~          2 11028129   Apelação / Ro~ São Paulo 2ª Câ~ 27/11/2017  
+##  5 0002236-1~          2 11041351   Apelação / Co~ Nhandeara 1ª Câ~ 27/11/2017  
+##  6 0002236-1~          2 11041352   Apelação / Co~ Nhandeara 1ª Câ~ 27/11/2017  
+##  7 0004453-2~          2 11041132   Apelação / Tr~ São Paulo 2ª Câ~ 13/11/2017  
+##  8 0004453-2~          2 11093635   Embargos de D~ São Paulo 2ª Câ~ 18/12/2017  
+##  9 0004636-5~          3 11032094   Apelação / Tr~ Olímpia   2ª Câ~ 27/11/2017  
+## 10 0004636-5~          3 11032093   Apelação / Tr~ Olímpia   2ª Câ~ 27/11/2017  
+## # ... with 104 more rows, and 3 more variables: data_registro <chr>,
+## #   juiz <chr>, txt_decisao <chr>
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{}
+\protect\hypertarget{section-13}{}
+\begin{itemize}
+\item
+  Janitor exemplos
+  \url{http://sfirke.github.io/janitor/articles/janitor.html}
+\item
+  Missing e imputação
+  \url{https://www.analyticsvidhya.com/blog/2016/03/tutorial-powerful-packages-imputing-missing-values/}
+\item
+  Outliers (critérios, limpeza e gráficos)
+\item
+  \texttt{stringi} e \texttt{stringr}
+\end{itemize}
+\end{frame}
+
+\end{document}
